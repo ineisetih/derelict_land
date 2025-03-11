@@ -1,72 +1,58 @@
 #include <iostream>
 #include <string>
 
-class IItem{
+class IItem {
     public:
-    std::string name;
-    virtual void PrintInfo() = 0;
+    virtual void GetInfo() = 0;
+    virtual ~IItem() = default;
 };
 
-class IWeapon : public IItem{
-    private:
+class Weapon : public IItem {
+    protected:
+    std::string name;
     float damage;
     public:
-    
-    void PrintInfo() override;
-    void attack();
+    void GetInfo() override;
 };
 
-class IArmor : public IItem{
-    private:
-    float defence;
+class WeaponGenerator{
     public:
-    void PrintInfo() override;
+    virtual Weapon* CreateWeapon(std::string name, float damage) = 0;
+    virtual ~WeaponGenerator() = default;
 };
 
-class Sword : public IWeapon{
+class SwordGenerator : public WeaponGenerator {
     public:
-    void PrintInfo() override;
+    Weapon* CreateWeapon(std::string name, float damage) override {
+        return new Sword(name, damage);
+    }
 };
 
-class Bow : public IWeapon{
+
+class Sword : public Weapon {
     public:
-    void PrintInfo() override;
+    Sword(std::string name, float damage);
 };
 
-
-class Shield : public IArmor{
-    public:
-    void PrintInfo() override;
-};
-
-class IFactory{
-    public:
-    virtual IItem* createItem() = 0;
-};
-
-class SwordFactory : public IFactory{
-    public:
-    Sword* createItem() override;
-};
-
-class BowFactory : public IFactory{
-    public:
-    Bow* createItem() override;
-};
-
-class ShieldFactory : public IFactory{
-    public:
-    Shield* createItem() override;
-};
+void Test(IItem* item){
+    item->GetInfo();
+}
 
 int main(){
-    SwordFactory* sword_factory = new SwordFactory();
-    Sword* my_sword = sword_factory->createItem();
-    std::cout << my_sword->name;
+    Sword* sword = new Sword("Sara", 10);
+    sword->GetInfo();
+    Test(sword);
+    return 0;
 }
 
-Sword* SwordFactory::createItem(){
-    Sword* sword = new Sword();
-    sword->name = "Sword";
-    return sword;
+void Weapon::GetInfo() {
+    std::cout << "Name: " << name << std::endl;
+    std::cout << "Damage: " << damage << std::endl;
 }
+
+Sword::Sword(std::string name, float damage){
+    this->name = name;
+    this->damage = damage;
+}
+
+
