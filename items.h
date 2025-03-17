@@ -10,12 +10,21 @@ class IItem {
 };
 
 class Weapon : public IItem {
-    protected:
-    std::string name;
-    float damage;
-    public:
-    void GetInfo() override;
+ protected:
+  std::string name;
+  float damage;
+ public:
+  void GetInfo() override;
 };
+
+class Armor : public IItem {
+ protected:
+ std::string name;
+ float defence;
+ public:
+ void GetInfo() override;
+};
+
 
 
 class Sword : public Weapon {

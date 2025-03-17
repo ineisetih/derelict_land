@@ -9,7 +9,7 @@ private:
     float damage;
     int level;
     float experience;
-    IInventory *inventory;
+    PlayerInventory *inventory;
     static bool isHeroCreated;
     
 
