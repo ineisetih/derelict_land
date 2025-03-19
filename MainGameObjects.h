@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "player.h"
+#include "UILogic.h"
 
 
 
@@ -11,10 +12,21 @@ public:
 void StartGame();
 
 };
+
+class Director {
+    private:
+    int story_points;
+public:
+    int GetStoryPoints();
+    void SetStoryPoints(int story_points);
+    
+};
+
 class GameMaster {
 public:
     GameInitialisation* current_gameInitialisation;
     Player* current_player;
+    DefualtLogic* current_logic;
 //    Director* current_director;
 //    Console* console;
 

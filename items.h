@@ -2,35 +2,52 @@
 #define ITEMS
 
 #include <string>
+#include <vector>
 
 class IItem {
-    public:
-    virtual void GetInfo() = 0;
-    virtual ~IItem() = default;
+ public:
+  virtual void GetInfo() = 0;
+  virtual ~IItem() = default;
+};
+
+class Gem : public IItem {
+ public:
+  void GetInfo() override;
+  ~Gem() = default;
 };
 
 class Weapon : public IItem {
  protected:
   std::string name;
   float damage;
+  int number_of_gem_slots;
+  std::vector<Gem*> gems;
+
  public:
   void GetInfo() override;
+  void AddGem(Gem* gem);
+  void RemoveGem(Gem* gem);
+  ~Weapon() = default;
 };
 
 class Armor : public IItem {
  protected:
- std::string name;
- float defence;
+  std::string name;
+  std::vector<Gem*> gems;
+  float defence;
+  int number_of_gem_slots;
+
  public:
- void GetInfo() override;
+  void GetInfo() override;
+  ~Armor() = default;
 };
-
-
 
 class Sword : public Weapon {
-    public:
-    Sword(std::string name, float damage);
-    Sword();
+ public:
+  Sword(std::string name, float damage, int number_of_gem_slots, std::vector<Gem*> gems);
+  Sword();
+  ~Sword() = default;
 };
 
-#endif 
+
+#endif
