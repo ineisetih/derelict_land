@@ -54,7 +54,7 @@ std::shared_ptr<Locations> LocationGenerator::GnerateLocation(){
     // Создание локации
     auto location = std::make_shared<Locations>(RandomType, RandomWeather);
 
-    // Добавление случайных свойств
+    // Добавление случайных свойств ///
     if (std::rand() % 2 == 0) {
         location->AddProperty("Enemies nearby");
     }
