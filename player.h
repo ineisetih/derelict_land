@@ -10,12 +10,11 @@ private:
     int level;
     float experience;
     PlayerInventory *inventory;
-    static bool isHeroCreated;
-    
+    static Player* player;
+    Player();
 
 public:
-Player();
-Player(float health, float damage) : health(health), damage(damage), level(0), experience(0) {}
+static Player* CreatePlayer();
 float GetHealth();
 float GetDamage();
 int GetLevel();
