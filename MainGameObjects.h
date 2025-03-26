@@ -24,9 +24,9 @@ public:
 
 class GameMaster {
 public:
-    Player* current_player;
-    DefualtLogic* current_logic;
-    Director* current_director;
+    static Player* current_player;
+    static DefualtLogic* current_logic;
+    static Director* current_director;
 //    Console* console;
 };
 
