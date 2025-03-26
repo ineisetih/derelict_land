@@ -24,10 +24,10 @@ class Weapon : public IItem {
   std::vector<Gem*> gems;
 
  public:
+  Weapon(std::string name, float damage);
   void GetInfo() override;
   void AddGem(Gem* gem);
   void RemoveGem(Gem* gem);
-  ~Weapon() = default;
 };
 
 class Armor : public IItem {
@@ -39,7 +39,7 @@ class Armor : public IItem {
 
  public:
   void GetInfo() override;
-  ~Armor() = default;
+  Armor(std::string name, float defence);
 };
 
 class Sword : public Weapon {
@@ -49,5 +49,23 @@ class Sword : public Weapon {
   ~Sword() = default;
 };
 
+enum WeaponType {
+  sword
+};
 
-#endif
+enum ArmorType {
+  helmet
+};
+
+
+class CreateWeapon {
+  public:
+  static std::shared_ptr<Weapon> Create(WeaponType type);
+};
+
+class CreateArmor {
+  public:
+  static std::shared_ptr<Armor> Create(ArmorType type);
+};
+
+#endif // ITEMS

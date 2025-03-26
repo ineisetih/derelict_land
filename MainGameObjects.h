@@ -24,12 +24,10 @@ public:
 
 class GameMaster {
 public:
-    GameInitialisation* current_gameInitialisation;
     Player* current_player;
     DefualtLogic* current_logic;
-//    Director* current_director;
+    Director* current_director;
 //    Console* console;
-
 };
 
 #endif

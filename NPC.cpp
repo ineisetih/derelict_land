@@ -8,5 +8,7 @@ void Enemy::DropLoot() {
     std::cout << name << " dropped loot!\n";
     std::vector<std::shared_ptr<IItem>> possibleLoot = {
         
-    }
+    };
 }
+
+

@@ -61,15 +61,6 @@ class TownLogic : public DefualtLogic {
   static TownLogic *GetInstance();
 };
 
-class QuestLogic : public DefualtLogic {
- private:
-  QuestLogic() = default;
-  static QuestLogic *MainQuestLogicInstance;
-
- public:
-  static QuestLogic *GetInstance();
-};
-
 class ShopLogic : public DefualtLogic {
  private:
   ShopLogic() = default;
