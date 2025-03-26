@@ -1,3 +1,4 @@
 .qodo
 *.exe
 .vscode
+.vs/
