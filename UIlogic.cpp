@@ -1,4 +1,5 @@
 #include "UIlogic.h"
+#include "player.h"
 
 #include <iostream>
 #include <list>
@@ -36,15 +37,6 @@ void DefualtLogic::AddComand(std::string& command_name, std::shared_ptr<ICommand
 }
 
 void NewGame::CommandExecute() {
-  std::cout << "Player created";
-};
-
-int main() {
-  MainMenuLogic* main_menu = MainMenuLogic::GetInstance();
-  NewGame new_game;
-  std::shared_ptr<NewGame> new_game_ptr = std::make_shared<NewGame>(new_game);
-  main_menu->AddComand(, new_game_ptr);
-  std::string console_command;
-  std::cin >> console_command;
-  main_menu->DoCommand(console_command);
+  Player* player = Player::CreatePlayer();
+  TownLogic* town_logic = TownLogic::GetInstance();
 };
