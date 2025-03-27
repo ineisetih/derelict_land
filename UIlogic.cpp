@@ -1,5 +1,7 @@
+
 #include "UILogic.h"
 #include "GameMaster.h"
+
 
 MainMenuLogic* MainMenuLogic::MainMenuLogicInstance = nullptr;
 
@@ -30,7 +32,11 @@ void DefaultLogic::AddCommand(std::string& command_name, std::shared_ptr<IComman
 
 void NewGame::CommandExecute() {
   Player* player = Player::CreatePlayer();
+
   std::cout << "New game started! Exploring first location...\n";
 
   ExploreCommand().CommandExecute();
 }
+
+};
+

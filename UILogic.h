@@ -12,6 +12,8 @@ class ICommand {
   virtual ~ICommand() = default;
 };
 
+
+
 class DefualtLogic {
  private:
   std::unordered_map<std::string, std::shared_ptr<ICommand>> commands;
@@ -35,9 +37,9 @@ class LogicHandler {
 class CommandHandler {
  private:
   CommandHandler() = default;
-
+static CommandHandler *command_handler_instance;
  public:
-  static CommandHandler *CommandHandlerInstance;
+  
   static CommandHandler *GetInstance();
   void ExecuteCommand(std::string &console_command);
 };

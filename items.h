@@ -15,7 +15,10 @@ class Gem : public IItem {
   float bonus;
 
  public:
+
   Gem(std::string type, float bonus) : type(type), bonus(bonus) {};
+
+
   std::string GetInfo() override;
 };
 
@@ -27,8 +30,10 @@ class Weapon : public IItem {
   std::vector<Gem*> gems;
 
  public:
+
   Weapon(std::string name, float damage, int slost) : name(name), damage(damage), number_of_gem_slots(slots) {
   };
+
   ~Weapon() override;
   std::string GetInfo() override;
   void AddGem(Gem* gem);
@@ -75,7 +80,11 @@ class CreateWeapon {
 class CreateArmor {
   public:
   static std::shared_ptr<Armor> Create(ArmorType type);
+<<<<<<< HEAD
 }*/
 ;
+=======
+}*/;
+>>>>>>> 55a9da078276bb05524960f840d324a1a0006a37
 
 #endif  // ITEMS

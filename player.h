@@ -4,6 +4,7 @@
 #include "Character.h"
 #include "PlayerInventory.h"
 
+
 class Player : public Character {
  private:
   float experience;
@@ -17,21 +18,22 @@ class Player : public Character {
 
   static Player* CreatePlayer(std::string name = "Hero", float health = 100.0f, float damage = 10.0f);
 
-  // Методы персонажа
+  // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
   void AddExperience(float exp);
   float GetExperience() const;
   int GetLevel() const;
   void LevelUp();
   void AddLevel(int levels);
 
-  // Работа с инвентарем
+  // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
   void EquipWeapon(Weapon* weapon);
   void EquipArmor(Armor* armor);
   std::string GetInventoryInfo() const;
 
-  // Сеттеры
+  // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
   void SetHealth(float health);
   void SetDamage(float damage);
+
 };
 
 #endif  // PLAYER_H

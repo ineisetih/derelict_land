@@ -4,6 +4,7 @@
 #include "items.h"
 #include <string>
 #include <vector>
+#include <memory>
 
 class IInventory {
  public:
@@ -21,9 +22,12 @@ class PlayerInventory : public IInventory {
   std::vector<IItem *> backpack;
 
  public:
+  PlayerInventory();
+  ~PlayerInventory() override;
+
   void AddItem(IItem *item) override;
   void RemoveItem(IItem *item) override;
   std::string GetInfo() override;
 };
 
-#endif
+#endif  // INVENTORY
