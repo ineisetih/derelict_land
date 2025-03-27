@@ -1,50 +1,36 @@
-#include "UIlogic.h"
+#include "UILogic.h"
+#include "GameMaster.h"
 
-#include <iostream>
-#include <list>
-
-void DefualtLogic::DoCommand(std::string& console_command) {
-  std::shared_ptr<ICommand> command;
-
-  if (commands.find(console_command) != commands.end()) {
-    command = commands[console_command];
-  } else {
-    std::string str;
-    std::cin >> str;
-    DoCommand(str);
-    return;
-  }
-  command->CommandExecute();
-}
+MainMenuLogic* MainMenuLogic::MainMenuLogicInstance = nullptr;
 
 MainMenuLogic* MainMenuLogic::GetInstance() {
-  if (MainMenuLogicInstance == nullptr) {
-    MainMenuLogicInstance = new MainMenuLogic; 
+  if (!MainMenuLogicInstance) {
+    MainMenuLogicInstance = new MainMenuLogic();
   }
   return MainMenuLogicInstance;
 }
+void NewGame::CommandExecute() {
+  Player* player = Player::CreatePlayer();
+  std::cout << "New game started! Player created." << std::endl;
 
-TownLogic* TownLogic::GetInstance() {
-  if (TownLogicInstance == nullptr) {
-    TownLogicInstance = new TownLogic;
-  }
-  return TownLogicInstance;
+  GameMaster::GetInstance()->SetCurrentLogic(TownLogic::GetInstance());
 }
 
-void DefualtLogic::AddComand(std::string& command_name, std::shared_ptr<ICommand> command) {
+void DefaultLogic::DoCommand(std::string& console_command) {
+  if (commands.find(console_command) != commands.end()) {
+    commands[console_command]->CommandExecute();
+  } else {
+    std::cout << "Unknown command!" << std::endl;
+  }
+}
+
+void DefaultLogic::AddCommand(std::string& command_name, std::shared_ptr<ICommand> command) {
   commands[command_name] = command;
 }
 
 void NewGame::CommandExecute() {
-  std::cout << "Player created";
-};
+  Player* player = Player::CreatePlayer();
+  std::cout << "New game started! Exploring first location...\n";
 
-int main() {
-  MainMenuLogic* main_menu = MainMenuLogic::GetInstance();
-  NewGame new_game;
-  std::shared_ptr<NewGame> new_game_ptr = std::make_shared<NewGame>(new_game);
-  main_menu->AddComand(, new_game_ptr);
-  std::string console_command;
-  std::cin >> console_command;
-  main_menu->DoCommand(console_command);
-};
+  ExploreCommand().CommandExecute();
+}

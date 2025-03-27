@@ -46,4 +46,11 @@ class LocationGenerator {
     static std::shared_ptr<Locations> GnerateLocation();
 };
 
+class Locations {
+ public:
+  bool HasProperty(const std::string& prop) const {
+    return std::find(properties.begin(), properties.end(), prop) != properties.end();
+  }
+};
+
 #endif // LOCATIONS_H

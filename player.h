@@ -1,29 +1,37 @@
-#ifndef PLAYER
-#define PLAYER
+#ifndef PLAYER_H
+#define PLAYER_H
 
-#include "inventory.h"
+#include "Character.h"
+#include "PlayerInventory.h"
 
-class Player{
-private:
-    float health;
-    float damage;
-    int level;
-    float experience;
-    PlayerInventory *inventory;
-    static bool isHeroCreated;
-    
+class Player : public Character {
+ private:
+  float experience;
+  int level;
+  static Player* instance;
 
-public:
-Player();
-Player(float health, float damage) : health(health), damage(damage), level(0), experience(0) {}
-float GetHealth();
-float GetDamage();
-int GetLevel();
-float GetExperience();
-void SetHealth(float health);
-void SetDamage(float damage);
-void AddLevel(int level);
-void AddExperience(float experience);
+  Player(std::string name, float health, float damage);
+
+ public:
+  ~Player() override;
+
+  static Player* CreatePlayer(std::string name = "Hero", float health = 100.0f, float damage = 10.0f);
+
+  // Методы персонажа
+  void AddExperience(float exp);
+  float GetExperience() const;
+  int GetLevel() const;
+  void LevelUp();
+  void AddLevel(int levels);
+
+  // Работа с инвентарем
+  void EquipWeapon(Weapon* weapon);
+  void EquipArmor(Armor* armor);
+  std::string GetInventoryInfo() const;
+
+  // Сеттеры
+  void SetHealth(float health);
+  void SetDamage(float damage);
 };
 
-#endif
+#endif  // PLAYER_H

@@ -46,10 +46,10 @@ class CommandHandler {
 class MainMenuLogic : public DefualtLogic {
  private:
   MainMenuLogic() = default;
-  static MainMenuLogic *MainMenuLogicInstance;
+  static MainMenuLogic* MainMenuLogicInstance;
 
  public:
-  static MainMenuLogic *GetInstance();
+  static MainMenuLogic* GetInstance();
 };
 
 class TownLogic : public DefualtLogic {
@@ -82,6 +82,19 @@ class FightLogic : public DefualtLogic {
 class NewGame : public ICommand {
  public:
   void CommandExecute() override;
+};
+
+class ExploreCommand : public ICommand {
+ public:
+  void CommandExecute() override {
+    auto location = LocationGenerator::GenerateLocation();
+    location->DisplayInfo();
+
+
+    if (location->HasProperty("Enemies nearby")) {
+      std::cout << "You encounter enemies!" << '\n';
+    }
+  }
 };
 
 #endif  // UILOGIC
