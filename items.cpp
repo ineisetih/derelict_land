@@ -27,6 +27,14 @@ std::string Gem::GetInfo() {
   return type + " gem (+" + std::to_string(bonus) + ")";
 }
 
+std::string Gem::GetType() {
+  return type;
+}
+
+float Gem::GetBonus() {
+  return bonus;
+}
+
 Weapon::~Weapon() {
   for (auto gem : gems) {
     delete gem;
@@ -99,14 +107,14 @@ Sword::Sword(std::string name, float damage, int slots, std::vector<Gem*> gems) 
 void Sword::AddGem(Gem* gem) {
   if (gems.size() < number_of_gem_slots) {
     gems.push_back(gem);
-    defence += gem->GetBonus();
+    damage += gem->GetBonus();
   }
 }
 
 void Sword::RemoveGem(Gem* gem) {
   auto it = std::find(gems.begin(), gems.end(), gem);
   if (it != gems.end()) {
-    defence -= (*it)->GetBonus();
+    damage -= (*it)->GetBonus();
     gems.erase(it);
     delete gem;
   }
@@ -172,14 +180,14 @@ Sword::Sword(std::string name, float damage, int slots, std::vector<Gem*> gems) 
 void Sword::AddGem(Gem* gem) {
   if (gems.size() < number_of_gem_slots) {
     gems.push_back(gem);
-    defence += gem->GetBonus();
+    damage += gem->GetBonus();
   }
 }
 
 void Sword::RemoveGem(Gem* gem) {
   auto it = std::find(gems.begin(), gems.end(), gem);
   if (it != gems.end()) {
-    defence -= (*it)->GetBonus();
+    damage -= (*it)->GetBonus();
     gems.erase(it);
     delete gem;
   }

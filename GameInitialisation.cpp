@@ -1,8 +1,8 @@
 #include "GameInitialisation.h"
-#include "GameMaster.h"
-#include "UILogic.h"
+#include "GameMaster.cpp"
+#include "UILogic.cpp"
 
-void GameInitialisation::StartGame() {
+static void StartGame() {
   GameMaster* gm = GameMaster::GetInstance();
   gm->InitializePlayer("Hero", 100.0f, 10.0f);
   gm->SetCurrentLogic(MainMenuLogic::GetInstance());
@@ -15,4 +15,3 @@ void GameInitialisation::StartGame() {
 //
 //  GameMaster::GetInstance()->SetCurrentLogic(logic);
 //  std::cout << "Type 'explore' to start journey or 'exit' to quit\n";
-}

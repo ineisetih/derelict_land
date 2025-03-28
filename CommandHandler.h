@@ -17,7 +17,7 @@ class CommandHandler {
     return instance;
   }
 
-  void ExecuteCommand(const std::string& command);
+  void ExecuteCommand(std::string& command);
 };
 
 #endif

@@ -1,5 +1,5 @@
-#include "GameInitialisation.h"
-#include "CommandHandler.h"
+#include "GameInitialisation.cpp"
+#include "CommandHandler.cpp"
 #include <iostream>
 
 int main() {

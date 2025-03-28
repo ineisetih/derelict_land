@@ -1,5 +1,5 @@
 #include "NPC.h"
-#include "items.h"
+#include "items.cpp"
 #include <iostream>
 #include <vector>
 

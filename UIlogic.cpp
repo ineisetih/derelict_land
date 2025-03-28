@@ -1,7 +1,7 @@
 
 #include "UILogic.h"
-#include "GameMaster.h"
-
+#include "GameMaster.cpp"
+#include "Player.cpp"
 
 MainMenuLogic* MainMenuLogic::MainMenuLogicInstance = nullptr;
 
@@ -14,7 +14,6 @@ MainMenuLogic* MainMenuLogic::GetInstance() {
 void NewGame::CommandExecute() {
   Player* player = Player::CreatePlayer();
   std::cout << "New game started! Player created." << std::endl;
-
   GameMaster::GetInstance()->SetCurrentLogic(TownLogic::GetInstance());
 }
 
@@ -26,17 +25,12 @@ void DefaultLogic::DoCommand(std::string& console_command) {
   }
 }
 
-void DefaultLogic::AddCommand(std::string& command_name, std::shared_ptr<ICommand> command) {
+void DefaultLogic::AddCommand(std::string command_name, std::shared_ptr<ICommand> command) {
   commands[command_name] = command;
 }
 
-void NewGame::CommandExecute() {
-  Player* player = Player::CreatePlayer();
-
-  std::cout << "New game started! Exploring first location...\n";
-
-  ExploreCommand().CommandExecute();
+void OpenShopCommand::CommandExecute(){
+  GameMaster::GetInstance()->SetCurrentLogic(ShopLogic::GetInstance());
 }
 
-};
 

@@ -6,7 +6,7 @@
 
 class IItem {
  public:
-  virtual void GetInfo() = 0;
+  virtual std::string GetInfo() = 0;
   virtual ~IItem() = default;
 };
 
@@ -17,9 +17,10 @@ class Gem : public IItem {
  public:
 
   Gem(std::string type, float bonus) : type(type), bonus(bonus) {};
-
-
+  float GetBonus();
+  std::string GetType();
   std::string GetInfo() override;
+
 };
 
 class Weapon : public IItem {
@@ -31,7 +32,7 @@ class Weapon : public IItem {
 
  public:
 
-  Weapon(std::string name, float damage, int slost) : name(name), damage(damage), number_of_gem_slots(slots) {
+  Weapon(std::string name, float damage, int slots) : name(name), damage(damage), number_of_gem_slots(slots) {
   };
 
   ~Weapon() override;
@@ -80,11 +81,8 @@ class CreateWeapon {
 class CreateArmor {
   public:
   static std::shared_ptr<Armor> Create(ArmorType type);
-<<<<<<< HEAD
 }*/
-;
-=======
-}*/;
->>>>>>> 55a9da078276bb05524960f840d324a1a0006a37
+
+
 
 #endif  // ITEMS

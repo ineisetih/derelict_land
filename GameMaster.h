@@ -1,8 +1,8 @@
 #ifndef GAME_MASTER_H
 #define GAME_MASTER_H
 
-#include "Player.h"
-#include "DefaultLogic.h"
+#include "Player.cpp"
+#include "UILogic.h"
 
 class Director {
  private:

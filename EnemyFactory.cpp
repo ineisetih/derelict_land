@@ -1,4 +1,4 @@
-#include "NPC.h"
+#include "NPC.cpp"
 #include <memory>
 
 std::shared_ptr<Enemy> EnemyFactory::CreateEnemy(EnemyType type) {

@@ -1,7 +1,7 @@
 #include "CommandHandler.h"
-#include "GameMaster.h"
+#include "GameMaster.cpp"
 
-void CommandHandler::ExecuteCommand(const std::string& command) {
+void CommandHandler::ExecuteCommand(std::string& command) {
   GameMaster* gm = GameMaster::GetInstance();
   if (gm->GetCurrentLogic()) {
     gm->GetCurrentLogic()->DoCommand(command);

@@ -36,6 +36,7 @@ class Locations {
     LocationType GetType();
     WeatherType GetWeather();
     std::vector<std::string> GetProperties();
+    bool HasProperty(const std::string& property); // Проверка наличия свойства
 
     void DisplayInfo(); // Вывод локации
 };
@@ -43,14 +44,7 @@ class Locations {
 class LocationGenerator {
   public:
     LocationGenerator() = delete;
-    static std::shared_ptr<Locations> GnerateLocation();
-};
-
-class Locations {
- public:
-  bool HasProperty(const std::string& prop) const {
-    return std::find(properties.begin(), properties.end(), prop) != properties.end();
-  }
+    static std::shared_ptr<Locations> GenerateLocation();
 };
 
 #endif // LOCATIONS_H

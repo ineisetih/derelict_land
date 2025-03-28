@@ -1,8 +1,7 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include "Character.h"
-#include "PlayerInventory.h"
+#include "Character.cpp"
 
 
 class Player : public Character {
