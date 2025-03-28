@@ -1,6 +1,6 @@
 #include "GameInitialisation.h"
-#include "GameMaster.cpp"
-#include "UILogic.cpp"
+#include "GameMaster.h"
+#include "UILogic.h"
 
 static void StartGame() {
   GameMaster* gm = GameMaster::GetInstance();

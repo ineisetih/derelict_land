@@ -1,7 +1,7 @@
 #ifndef GAME_MASTER_H
 #define GAME_MASTER_H
 
-#include "Player.cpp"
+#include "Player.h"
 #include "UILogic.h"
 
 class Director {

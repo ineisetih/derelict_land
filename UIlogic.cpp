@@ -1,7 +1,9 @@
 
 #include "UILogic.h"
-#include "GameMaster.cpp"
-#include "Player.cpp"
+#include "GameMaster.h"
+#include "Player.h"
+#include "TownLogic.h"
+
 
 MainMenuLogic* MainMenuLogic::MainMenuLogicInstance = nullptr;
 

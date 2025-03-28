@@ -1,4 +1,5 @@
 #include "locations.h"
+#include <algorithm>
 
 Locations::Locations(LocationType type, WeatherType weater) : type(type), weather(weater) {
 }

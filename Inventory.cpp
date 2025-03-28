@@ -1,4 +1,5 @@
 #include "Inventory.h"
+#include <algorithm>
 
 PlayerInventory::PlayerInventory() : left_hand(nullptr), right_hand(nullptr), body(nullptr) {
 }

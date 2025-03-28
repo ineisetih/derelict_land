@@ -1,7 +1,7 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include "Character.cpp"
+#include "Character.h"
 
 
 class Player : public Character {
@@ -17,19 +17,16 @@ class Player : public Character {
 
   static Player* CreatePlayer(std::string name = "Hero", float health = 100.0f, float damage = 10.0f);
 
-  // ������ ���������
   void AddExperience(float exp);
   float GetExperience() const;
   int GetLevel() const;
   void LevelUp();
   void AddLevel(int levels);
 
-  // ������ � ����������
   void EquipWeapon(Weapon* weapon);
   void EquipArmor(Armor* armor);
   std::string GetInventoryInfo() const;
 
-  // �������
   void SetHealth(float health);
   void SetDamage(float damage);
 

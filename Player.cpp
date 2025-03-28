@@ -1,22 +1,19 @@
-#include "Player.h"
+#include "player.h"
 #include <stdexcept>
 
-// ����������� ����������
 Player* Player::instance = nullptr;
 
-// �����������
 Player::Player(std::string name, float health, float damage)
     : Character(name, health, damage), experience(0), level(1) {
   inventory = new PlayerInventory();
 }
 
-// ����������
+
 Player::~Player() {
   delete inventory;
   instance = nullptr;
 }
 
-// �������� ������ (��������)
 Player* Player::CreatePlayer(std::string name, float health, float damage) {
   if (!instance) {
     instance = new Player(name, health, damage);
@@ -24,7 +21,6 @@ Player* Player::CreatePlayer(std::string name, float health, float damage) {
   return instance;
 }
 
-// ���������� �����
 void Player::AddExperience(float exp) {
   if (exp < 0) {
     throw std::invalid_argument("Experience cannot be negative");
@@ -33,12 +29,11 @@ void Player::AddExperience(float exp) {
   experience += exp;
   std::cout << "Gained " << exp << " experience. Total: " << experience << "/100\n";
 
-  if (experience >= 100) {
+  while (experience >= 100) {
     LevelUp();
   }
 }
 
-// ��������� ������
 void Player::LevelUp() {
   level++;
   damage += 5;
@@ -100,7 +95,6 @@ void Player::SetDamage(float damage) {
   this->damage = damage;
 }
 
-// ���������� ������ (��� �������/�����)
 void Player::AddLevel(int levels) {
   if (levels <= 0)
     return;

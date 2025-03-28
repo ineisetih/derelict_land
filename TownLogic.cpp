@@ -1,5 +1,5 @@
 #include "TownLogic.h"
-#include "GameMaster.cpp"
+#include "GameMaster.h"
 
 
 TownLogic* TownLogic::GetInstance() {

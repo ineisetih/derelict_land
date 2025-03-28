@@ -60,8 +60,6 @@ class Sword : public Weapon {
  public:
   Sword(std::string name, float damage, int slots = 1, std::vector<Gem*> gems = {});
   std::string GetInfo() override;
-  void AddGem(Gem* gem);
-  void RemoveGem(Gem* gem);
 };
 
 /*enum WeaponType {

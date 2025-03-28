@@ -1,7 +1,7 @@
 #ifndef TOWN_LOGIC_H
 #define TOWN_LOGIC_H
 
-#include "UIlogic.cpp"
+#include "UIlogic.h"
 
 class TownLogic : public DefaultLogic {
 private:

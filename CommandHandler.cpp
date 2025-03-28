@@ -1,5 +1,5 @@
 #include "CommandHandler.h"
-#include "GameMaster.cpp"
+#include "GameMaster.h"
 
 void CommandHandler::ExecuteCommand(std::string& command) {
   GameMaster* gm = GameMaster::GetInstance();
