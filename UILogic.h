@@ -6,6 +6,7 @@
 #include <vector>
 #include <unordered_map>
 #include "locations.h"
+#include "Enemy.h"
 
 class ICommand {
  public:
@@ -14,11 +15,13 @@ class ICommand {
 };
 
 class DefaultLogic {
- private:
+ protected:
   std::unordered_map<std::string, std::shared_ptr<ICommand>> commands;
 
  public:
+  DefaultLogic();
   void DoCommand(std::string &console_command);
+  auto GetCommands();
   void AddCommand(std::string command_name, std::shared_ptr<ICommand> command);
 };
 
@@ -32,16 +35,6 @@ class LogicHandler {
   DefaultLogic *CurrentLogic;
   void ChangeLogic(DefaultLogic *new_logic);
 };
-
-// class CommandHandler {
-//  private:
-//   CommandHandler() = default;
-// static CommandHandler *command_handler_instance;
-//  public:
-
-//   static CommandHandler *GetInstance();
-//   void ExecuteCommand(std::string &console_command);
-// };
 
 class MainMenuLogic : public DefaultLogic {
  private:
@@ -74,9 +67,12 @@ class FightLogic : public DefaultLogic {
  private:
   FightLogic() = default;
   static FightLogic *MainFightLogicInstance;
-
+  std::vector<Enemy*> enemies;
  public:
   static FightLogic *GetInstance();
+  void AddEnemy(Enemy* enemy);
+  void RemoveEnemy(Enemy* enemy);
+  std::vector<Enemy*> GetEnemies();
 };
 
 class NewGame : public ICommand {
@@ -86,15 +82,7 @@ class NewGame : public ICommand {
 
 class ExploreCommand : public ICommand {
  public:
-  void CommandExecute() override {
-    auto location = LocationGenerator::GenerateLocation();
-    location->DisplayInfo();
-
-    if (location->HasProperty("Enemies nearby")) {
-      std::cout << "You encounter enemies!" << '\n';
-      LogicHandler::GetInstance()->ChangeLogic(FightLogic::GetInstance());
-    }
-  }
+  void CommandExecute() override;
 };
 
 class OpenShopCommand : public ICommand {
@@ -103,6 +91,25 @@ class OpenShopCommand : public ICommand {
 };
 
 class ShowInventoryCommand : public ICommand {
+ public:
+  void CommandExecute() override;
+};
+
+class ShowCommandsList : public ICommand {
+ private:
+  DefaultLogic *logic;
+
+ public:
+  ShowCommandsList(DefaultLogic *logic);
+  void CommandExecute() override;
+};
+
+class Exit : public ICommand {
+ public:
+  void CommandExecute() override;
+};
+
+class ShowPlayerStats : public ICommand {
  public:
   void CommandExecute() override;
 };

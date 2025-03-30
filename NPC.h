@@ -16,25 +16,4 @@ class Merchant : public NPC {  // Торговец
   void Interact() override;
 };
 
-
-
-// ENEMYS
-
-class Enemy : public Character {
- public:
-  Enemy(std::string name, float health, float damage);
-  void DropLoot();
-};
-
-enum EnemyType {
-Goblin,
-Skeleton
-};
-
-class EnemyFactory {
-  public:
-  static std::shared_ptr<Enemy> CreateEnemy(EnemyType type);
-};
-
-
 #endif  // NPC_H

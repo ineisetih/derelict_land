@@ -1,9 +1,19 @@
 #include "UILogic.h"
 #include "GameMaster.h"
 #include "Player.h"
+#include "NPC.h"
+#include "Enemy.h"
+
 
 MainMenuLogic* MainMenuLogic::MainMenuLogicInstance = nullptr;
 TownLogic* TownLogic::TownLogicInstance = nullptr;
+FightLogic* FightLogic::MainFightLogicInstance = nullptr;
+
+DefaultLogic::DefaultLogic() {
+  AddCommand("exit", std::make_shared<Exit>());
+  AddCommand("help", std::make_shared<ShowCommandsList>(this));
+  AddCommand("stats", std::make_shared<ShowPlayerStats>());
+}
 
 MainMenuLogic* MainMenuLogic::GetInstance() {
   if (!MainMenuLogicInstance) {
@@ -30,6 +40,10 @@ void DefaultLogic::AddCommand(std::string command_name, std::shared_ptr<ICommand
   commands[command_name] = command;
 }
 
+auto DefaultLogic::GetCommands() {
+  return commands;
+}
+
 LogicHandler* LogicHandler::LogicHandlerInstance = nullptr;
 
 LogicHandler* LogicHandler::GetInstance() {
@@ -41,8 +55,6 @@ LogicHandler* LogicHandler::GetInstance() {
 void LogicHandler::ChangeLogic(DefaultLogic* new_logic) {
   CurrentLogic = new_logic;
 }
-
-FightLogic* FightLogic::MainFightLogicInstance = nullptr;
 
 FightLogic* FightLogic::GetInstance() {
   if (!MainFightLogicInstance) {
@@ -82,3 +94,38 @@ ShopLogic* ShopLogic::GetInstance() {
   }
   return ShopLogicInstance;
 }
+
+void Exit::CommandExecute() {
+  std::cout << "bye";
+  exit(0);
+}
+
+ShowCommandsList::ShowCommandsList(DefaultLogic* logic) : logic(logic) {
+}
+void ShowCommandsList::CommandExecute() {
+  std::cout << "Available commands:" << std::endl;
+  for (const auto& pair : logic->GetCommands()) {
+    std::cout << "- " << pair.first << std::endl;
+  }
+}
+
+void ShowPlayerStats::CommandExecute() {
+  if (GameMaster::GetInstance()->GetPlayer() != nullptr) {
+    auto player = GameMaster::GetInstance()->GetPlayer();
+    std::cout << "Hp: " << player->GetHealth() << std::endl;
+    std::cout << "Damage: " << player->GetDamage() << std::endl;
+    std::cout << "LVL: " << player->GetLevel() << std::endl;
+    std::cout << "Exp: " << player->GetExperience() << std::endl;
+  }
+}
+
+void ExploreCommand::CommandExecute() {
+  auto location = LocationGenerator::GenerateLocation();
+  location->DisplayInfo();
+
+  if (location->HasProperty("Enemies nearby")) {
+    std::cout << "You encounter enemies!" << '\n';
+    LogicHandler::GetInstance()->ChangeLogic(FightLogic::GetInstance());
+  }
+}
+

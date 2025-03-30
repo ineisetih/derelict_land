@@ -11,11 +11,6 @@ int main() {
     while (true) {
       std::cout << "> ";
       std::getline(std::cin, input);
-
-      if (input == "exit") {
-        break;
-      }
-
       handler->ExecuteCommand(input);
     }
   } catch (const std::exception& e) {
