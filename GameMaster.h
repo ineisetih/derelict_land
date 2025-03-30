@@ -40,8 +40,8 @@ class GameMaster {
     return instance;
   }
 
-  void InitializePlayer(const std::string& name, float health, float damage) {
-    current_player = Player::CreatePlayer(name, health, damage);
+  void InitializePlayer() {
+    current_player = Player::CreatePlayer();
   }
 
   Player* GetPlayer() const {

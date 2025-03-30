@@ -8,7 +8,6 @@ int main() {
 
     CommandHandler* handler = CommandHandler::GetInstance();
     std::string input;
-
     while (true) {
       std::cout << "> ";
       std::getline(std::cin, input);

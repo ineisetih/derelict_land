@@ -7,14 +7,11 @@
 #include <unordered_map>
 #include "locations.h"
 
-
 class ICommand {
  public:
   virtual void CommandExecute() = 0;
   virtual ~ICommand() = default;
 };
-
-
 
 class DefaultLogic {
  private:
@@ -41,25 +38,33 @@ class LogicHandler {
 //   CommandHandler() = default;
 // static CommandHandler *command_handler_instance;
 //  public:
-  
+
 //   static CommandHandler *GetInstance();
 //   void ExecuteCommand(std::string &console_command);
 // };
 
-
 class MainMenuLogic : public DefaultLogic {
  private:
   MainMenuLogic() = default;
-  static MainMenuLogic* MainMenuLogicInstance;
+  static MainMenuLogic *MainMenuLogicInstance;
 
  public:
-  static MainMenuLogic* GetInstance();
+  static MainMenuLogic *GetInstance();
+};
+
+class TownLogic : public DefaultLogic {
+ private:
+  TownLogic() = default;
+  static TownLogic *TownLogicInstance;
+
+ public:
+  static TownLogic *GetInstance();
 };
 
 class ShopLogic : public DefaultLogic {
  private:
   ShopLogic() = default;
-  static ShopLogic *MainShopLogicInstance;
+  static ShopLogic *ShopLogicInstance;
 
  public:
   static ShopLogic *GetInstance();
@@ -84,7 +89,6 @@ class ExploreCommand : public ICommand {
   void CommandExecute() override {
     auto location = LocationGenerator::GenerateLocation();
     location->DisplayInfo();
-
 
     if (location->HasProperty("Enemies nearby")) {
       std::cout << "You encounter enemies!" << '\n';

@@ -2,9 +2,8 @@
 #include "GameMaster.h"
 #include "UILogic.h"
 
-static void StartGame() {
+void GameInitialisation::StartGame() {
   GameMaster* gm = GameMaster::GetInstance();
-  gm->InitializePlayer("Hero", 100.0f, 10.0f);
   gm->SetCurrentLogic(MainMenuLogic::GetInstance());
   std::cout << "Game initialized successfully!" << '\n';
 }

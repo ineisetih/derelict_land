@@ -2,7 +2,7 @@
 #ifndef CHARACTER_H
 #define CHARACTER_H
 
-#include "items.h"
+#include "Items.h"
 #include "inventory.h"
 #include <string>
 #include <iostream>

@@ -83,10 +83,14 @@ void Weapon::RemoveGem(Gem* gem) {
   }
 }
 
-Sword::Sword(std::string name, float damage, int slots, std::vector<Gem*> gems) : Weapon(name, damage, slots) {
+Sword::Sword(std::string name, float damage, size_t slots, std::vector<Gem*> gems) : Weapon(name, damage, slots) {
   for (auto gem : gems) {
     AddGem(gem);
   }
+}
+
+Armor::Armor(const std::string name, float defence, size_t slots)
+    : name(name), defence(defence), number_of_gem_slots(slots) {
 }
 
 #endif  // ITEMSCPP

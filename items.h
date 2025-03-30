@@ -15,25 +15,21 @@ class Gem : public IItem {
   float bonus;
 
  public:
-
   Gem(std::string type, float bonus) : type(type), bonus(bonus) {};
   float GetBonus();
   std::string GetType();
   std::string GetInfo() override;
-
 };
 
 class Weapon : public IItem {
  protected:
   std::string name;
   float damage;
-  int number_of_gem_slots;
+  size_t number_of_gem_slots;
   std::vector<Gem*> gems;
 
  public:
-
-  Weapon(std::string name, float damage, int slots) : name(name), damage(damage), number_of_gem_slots(slots) {
-  };
+  Weapon(std::string name, float damage, size_t slots) : name(name), damage(damage), number_of_gem_slots(slots) {};
 
   ~Weapon() override;
   std::string GetInfo() override;
@@ -46,19 +42,19 @@ class Armor : public IItem {
   std::string name;
   std::vector<Gem*> gems;
   float defence;
-  int number_of_gem_slots;
+  size_t number_of_gem_slots;
 
  public:
   std::string GetInfo() override;
   ~Armor() override;
-  Armor(std::string name, float defence, int slots);
+  Armor(const std::string name, float defence, size_t slots);
   void AddGem(Gem* gem);
   void RemoveGem(Gem* gem);
 };
 
 class Sword : public Weapon {
  public:
-  Sword(std::string name, float damage, int slots = 1, std::vector<Gem*> gems = {});
+  Sword(std::string name, float damage, size_t slots = 1, std::vector<Gem*> gems = {});
   std::string GetInfo() override;
 };
 
@@ -80,7 +76,5 @@ class CreateArmor {
   public:
   static std::shared_ptr<Armor> Create(ArmorType type);
 }*/
-
-
 
 #endif  // ITEMS

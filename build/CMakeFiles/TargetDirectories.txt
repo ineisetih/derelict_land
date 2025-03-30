@@ -1,0 +1,3 @@
+C:/Users/максим/Desktop/derelict_land/build/CMakeFiles/derelict_land.dir
+C:/Users/максим/Desktop/derelict_land/build/CMakeFiles/edit_cache.dir
+C:/Users/максим/Desktop/derelict_land/build/CMakeFiles/rebuild_cache.dir
