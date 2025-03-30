@@ -1,4 +1,3 @@
-
 #include "UILogic.h"
 #include "GameMaster.h"
 #include "Player.h"
@@ -31,10 +30,6 @@ void DefaultLogic::AddCommand(std::string command_name, std::shared_ptr<ICommand
   commands[command_name] = command;
 }
 
-void OpenShopCommand::CommandExecute() {
-  GameMaster::GetInstance()->SetCurrentLogic(ShopLogic::GetInstance());
-}
-
 LogicHandler* LogicHandler::LogicHandlerInstance = nullptr;
 
 LogicHandler* LogicHandler::GetInstance() {
@@ -61,8 +56,22 @@ TownLogic* TownLogic::GetInstance() {
     TownLogicInstance = new TownLogic();
     TownLogicInstance->AddCommand("explore", std::make_shared<ExploreCommand>());
     TownLogicInstance->AddCommand("shop", std::make_shared<OpenShopCommand>());
+    TownLogicInstance->AddCommand("inventory", std::make_shared<ShowInventoryCommand>());
   }
   return TownLogicInstance;
+}
+
+void OpenShopCommand::CommandExecute() {
+  GameMaster::GetInstance()->SetCurrentLogic(ShopLogic::GetInstance());
+}
+
+void ShowInventoryCommand::CommandExecute() {
+  Player* player = GameMaster::GetInstance()->GetPlayer();
+  if (player) {
+    std::cout << player->GetInventoryInfo() << '\n';
+  } else {
+    std::cout << "Player not initialized!" << '\n';
+  }
 }
 
 ShopLogic* ShopLogic::ShopLogicInstance = nullptr;

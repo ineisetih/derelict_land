@@ -102,4 +102,9 @@ class OpenShopCommand : public ICommand {
   void CommandExecute() override;
 };
 
+class ShowInventoryCommand : public ICommand {
+ public:
+  void CommandExecute() override {
+  }
+};
 #endif  // UILOGIC

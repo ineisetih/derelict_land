@@ -38,16 +38,16 @@ void Locations::DisplayInfo() {
   std::string WeatherName;
   switch (weather) {
     case RAIN:
-      LocationName = "RAIN";
+      WeatherName = "RAIN";
       break;
     case SUN:
-      LocationName = "SUN";
+      WeatherName = "SUN";
       break;
     case SNOW:
-      LocationName = "SNOW";
+      WeatherName = "SNOW";
       break;
     default:
-      LocationName = "IDK";
+      WeatherName = "IDK";
       break;
   }
 
