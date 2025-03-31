@@ -17,6 +17,7 @@ add_executable(derelict_land
     Player.cpp
     UIlogic.cpp
     Inventory.cpp
+    Enemy.cpp
     
 )
 

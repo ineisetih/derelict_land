@@ -4,9 +4,9 @@
 #include "Character.h"
 
 class Enemy : public Character {
-public:
-    Enemy(std::string name, float health, float damage);
-    void DropLoot(); // ����� ��� ��������� ����
+ public:
+  Enemy(std::string name, float health, float damage);
+  void DropLoot();
 };
 
 enum EnemyType { Goblin, Skeleton };
@@ -16,4 +16,4 @@ class EnemyFactory {
   static std::shared_ptr<Enemy> CreateEnemy(EnemyType type);
 };
 
-#endif // ENEMY_H
+#endif  // ENEMY_H

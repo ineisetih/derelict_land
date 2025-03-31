@@ -67,12 +67,13 @@ class FightLogic : public DefaultLogic {
  private:
   FightLogic() = default;
   static FightLogic *MainFightLogicInstance;
-  std::vector<Enemy*> enemies;
+  std::vector<Enemy *> enemies;
+
  public:
   static FightLogic *GetInstance();
-  void AddEnemy(Enemy* enemy);
-  void RemoveEnemy(Enemy* enemy);
-  std::vector<Enemy*> GetEnemies();
+  void AddEnemy(Enemy *enemy);
+  void RemoveEnemy(Enemy *enemy);
+  std::vector<Enemy *> GetEnemies();
 };
 
 class NewGame : public ICommand {

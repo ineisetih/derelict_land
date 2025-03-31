@@ -1,9 +1,9 @@
 #include "NPC.h"
+#include "Enemy.h"
 #include "items.h"
 #include <iostream>
 #include <vector>
 
-Enemy::Enemy(std::string name, float health, float damage) : Character(name, health, damage) {};
 
 void NPC::Interact() {
   std::cout << name << " says: Hello, traveler!\n";

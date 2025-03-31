@@ -4,7 +4,6 @@
 #include "NPC.h"
 #include "Enemy.h"
 
-
 MainMenuLogic* MainMenuLogic::MainMenuLogicInstance = nullptr;
 TownLogic* TownLogic::TownLogicInstance = nullptr;
 FightLogic* FightLogic::MainFightLogicInstance = nullptr;
@@ -12,7 +11,7 @@ FightLogic* FightLogic::MainFightLogicInstance = nullptr;
 DefaultLogic::DefaultLogic() {
   AddCommand("exit", std::make_shared<Exit>());
   AddCommand("help", std::make_shared<ShowCommandsList>(this));
-  AddCommand("stats", std::make_shared<ShowPlayerStats>());
+  AddCommand("status", std::make_shared<ShowPlayerStats>());
 }
 
 MainMenuLogic* MainMenuLogic::GetInstance() {
@@ -116,6 +115,8 @@ void ShowPlayerStats::CommandExecute() {
     std::cout << "Damage: " << player->GetDamage() << std::endl;
     std::cout << "LVL: " << player->GetLevel() << std::endl;
     std::cout << "Exp: " << player->GetExperience() << std::endl;
+  } else {
+    std::cout << "No player found" << std::endl;
   }
 }
 
@@ -128,4 +129,3 @@ void ExploreCommand::CommandExecute() {
     LogicHandler::GetInstance()->ChangeLogic(FightLogic::GetInstance());
   }
 }
-
