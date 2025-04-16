@@ -6,7 +6,7 @@
 class Enemy : public Character {
 public:
     Enemy(std::string name, float health, float damage);
-    void DropLoot(); // ����� ��� ��������� ����
+    void DropLoot();
 };
 
 enum EnemyType { Goblin, Skeleton };

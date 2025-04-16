@@ -8,6 +8,6 @@ std::shared_ptr<Enemy> EnemyFactory::CreateEnemy(EnemyType type) {
     case Skeleton:
       return std::make_shared<Enemy>("Skeleton", 70.0f, 8.0f);
     default:
-      return nullptr;
+      throw std::invalid_argument("Invalid enemy type");
   }
 }

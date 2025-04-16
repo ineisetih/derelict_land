@@ -1,3 +1,4 @@
+#include "Enemy.h"
 #include "NPC.h"
 #include "items.h"
 #include <iostream>

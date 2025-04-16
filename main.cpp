@@ -3,6 +3,7 @@
 #include <iostream>
 
 int main() {
+  srand(static_cast<unsigned>(time(nullptr)));
   try {
     GameInitialisation::StartGame();
 

@@ -73,6 +73,16 @@ class FightLogic : public DefaultLogic {
   void AddEnemy(Enemy* enemy);
   void RemoveEnemy(Enemy* enemy);
   std::vector<Enemy*> GetEnemies();
+ public:
+  void StartFight();
+  void ClearEnemies();
+};
+
+class FightCommand : public ICommand {
+ public:
+  void CommandExecute() override {
+    FightLogic::GetInstance()->StartFight();
+  }
 };
 
 class NewGame : public ICommand {
