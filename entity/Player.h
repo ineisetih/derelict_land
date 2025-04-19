@@ -5,7 +5,9 @@
 #include "Armor.h"
 #include "Weapon.h"
 
-#define BASE_HP 100
+#define BASE_HP 100.0f
+#define BASE_DMG 10.0f
+
 
 class Player : public Character {
  private:
@@ -18,7 +20,7 @@ class Player : public Character {
  public:
   ~Player() override;
 
-  static Player* CreatePlayer(std::string name = "Hero", float health = 100.0f, float damage = 10.0f);
+  static Player* CreatePlayer(std::string name = "Hero", float health = BASE_HP, float damage = BASE_DMG);
 
   void AddExperience(float exp);
   float GetExperience() const;

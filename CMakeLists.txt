@@ -21,6 +21,7 @@ set(ENTITY_DIR ${CMAKE_SOURCE_DIR}/entity)
 set(LOCATIONS_DIR ${CMAKE_SOURCE_DIR}/locations)
 set(LOGIC_DIR ${CMAKE_SOURCE_DIR}/logic)
 set(ITEMS_DIR ${CMAKE_SOURCE_DIR}/items)
+set(UTILITY_DIR ${CMAKE_SOURCE_DIR}/utility)
 
 # --- Collect Source Files ---
 file(GLOB_RECURSE SOURCE_FILES
@@ -32,6 +33,7 @@ file(GLOB_RECURSE SOURCE_FILES
     "${LOCATIONS_DIR}/*.cpp"
     "${LOGIC_DIR}/*.cpp"
     "${ITEMS_DIR}/*.cpp"
+    "${UTILITY_DIR}/*.cpp"
 )
 
 
@@ -48,6 +50,7 @@ target_include_directories(derelict_land PUBLIC
     ${LOCATIONS_DIR}
     ${LOGIC_DIR}
     ${ITEMS_DIR}
+    ${UTILITY_DIR}
 )
 
 # --- Compiler Options ---
