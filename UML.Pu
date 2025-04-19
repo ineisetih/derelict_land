@@ -1,271 +1,167 @@
-@startuml name
-' Style settings
-skinparam classAttributeIconSize 0
-skinparam linetype ortho
+@startuml derelict_land
+!define LIGHTBLUE #E0FFFF
 
-' Classes
+package "derelict_land" {
+  package "commands" {
+    interface ICommand {
+      +CommandExecute()
+    }
 
-class GameMaster {
-  - instance: GameMaster*
-  - current_player: Player*
-  - current_logic: DefaultLogic*
-  - director: Director*
-  + GetInstance(): GameMaster*
-  + InitializePlayer(): void
-  + GetPlayer(): Player*
-  + GetCurrentLogic(): DefaultLogic*
-  + SetCurrentLogic(logic: DefaultLogic*): void
-  + GetDirector(): Director*
-}
+    class ExitCommand {
+      +CommandExecute()
+    }
 
-class Director {
-  - story_points: int
-  + GetStoryPoints(): int
-  + SetStoryPoints(points: int): void
-}
+    class ExploreCommand {
+      +CommandExecute()
+    }
 
-class GameInitialisation {
-  + StartGame(): void
-}
+    class NewGame {
+      +CommandExecute()
+    }
 
-class CommandHandler {
-  - instance: CommandHandler*
-  + GetInstance(): CommandHandler*
-  + ExecuteCommand(command: string): void
-}
+    class OpenShopCommand {
+      +CommandExecute()
+    }
 
-abstract class ICommand {
-  + {abstract} CommandExecute(): void
-}
+    class ShowCommandsList {
+      +CommandExecute()
+    }
 
-class DefaultLogic {
-  - commands: unordered_map<string, shared_ptr<ICommand>>
-  + DefaultLogic()
-  + DoCommand(console_command: string): void
-  + GetCommands(): auto
-  + AddCommand(command_name: string, command: shared_ptr<ICommand>): void
-}
+    class ShowInventoryCommand {
+      +CommandExecute()
+    }
 
-class LogicHandler {
-  - LogicHandlerInstance: LogicHandler*
-  - CurrentLogic: DefaultLogic*
-  + GetInstance(): LogicHandler*
-  + ChangeLogic(new_logic: DefaultLogic*): void
-}
+    class ShowPlayerStats {
+      +CommandExecute()
+    }
+  }
 
-class MainMenuLogic {
-  - MainMenuLogicInstance: MainMenuLogic*
-  + GetInstance(): MainMenuLogic*
-}
+  package "entity" {
+    class Player {
+      -Player()
+      +CreatePlayer()
+    }
+    class Enemy {
+    }
+  }
 
-class TownLogic {
-  - TownLogicInstance: TownLogic*
-  + GetInstance(): TownLogic*
-}
+  package "logic" {
+    abstract class DefaultLogic {
+      #commands : std::unordered_map<std::string, std::shared_ptr<ICommand>>
+      +DefaultLogic()
+      +DoCommand(std::string&)
+      +GetCommands()
+      +AddCommand(std::string, std::shared_ptr<ICommand>)
+    }
 
-class ShopLogic {
-  - ShopLogicInstance: ShopLogic*
-  + GetInstance(): ShopLogic*
-}
+    class LogicHandler {
+      -LogicHandler()
+      +LogicHandlerInstance : LogicHandler*
+      +GetInstance() : LogicHandler*
+      +CurrentLogic : DefaultLogic*
+      +ChangeLogic(DefaultLogic*)
+    }
 
-class FightLogic {
-  - MainFightLogicInstance: FightLogic*
-  - enemies: vector<Enemy*>
-  + GetInstance(): FightLogic*
-  + AddEnemy(enemy: Enemy*): void
-  + RemoveEnemy(enemy: Enemy*): void
-  + GetEnemies(): vector<Enemy*>
-}
+    class MainMenuLogic {
+      -MainMenuLogic()
+      +MainMenuLogicInstance : MainMenuLogic*
+      +GetInstance() : MainMenuLogic*
+    }
 
-class NewGame {
-  + CommandExecute(): void
-}
+    class TownLogic {
+      -TownLogic()
+      +TownLogicInstance : TownLogic*
+      +GetInstance() : TownLogic*
+    }
 
-class ExploreCommand {
-  + CommandExecute(): void
-}
+    class ShopLogic {
+      -ShopLogic()
+      +ShopLogicInstance : ShopLogic*
+      +GetInstance() : ShopLogic*
+    }
 
-class OpenShopCommand {
-  + CommandExecute(): void
-}
+    class FightLogic {
+      -FightLogic()
+      +MainFightLogicInstance : FightLogic*
+      +GetInstance() : FightLogic*
+      +AddEnemy(Enemy*)
+      +RemoveEnemy(Enemy*)
+      +GetEnemies() : std::vector<Enemy*>
+    }
+  }
 
-class ShowInventoryCommand {
-  + CommandExecute(): void
-}
+  package "main_game_obj" {
+    class GameMaster {
+      -GameMaster()
+      +instance : GameMaster*
+      +GetInstance() : GameMaster*
+      +InitializePlayer()
+      +GetPlayer() : Player*
+      +GetCurrentLogic() : DefaultLogic*
+      +SetCurrentLogic(DefaultLogic*)
+      +GetDirector() : Director*
+    }
 
-class ShowCommandsList {
-  - logic: DefaultLogic*
-  + ShowCommandsList(logic: DefaultLogic*)
-  + CommandExecute(): void
-}
+    class Director {
+      -story_points : int
+      +GetStoryPoints() : int
+      +SetStoryPoints(int)
+    }
 
-class Exit {
-  + CommandExecute(): void
-}
+    class GameInitialisation {
+      +StartGame()
+    }
+  }
+  class UILogic{
 
-class ShowPlayerStats {
-  + CommandExecute(): void
-}
-
-abstract class Character {
-  - name: string
-  - health: float
-  - damage: float
-  - level: int
-  - inventory: IInventory*
-  + Character(name: string, health: float, damage: float)
-  + Attack(target: Character*): void
-  + Take_Damage(damage: float): void
-  + Heal(heal: float): void
-  + GetName(): string
-  + GetHealth(): float
-  + GetDamage(): float
-}
-
-class Player {
-  - experience: float
-  - level: int
-  - instance: Player*
-  + {static} CreatePlayer(name: string, health: float, damage: float): Player*
-  + AddExperience(exp: float): void
-  + GetExperience(): float
-  + GetLevel(): int
-  + LevelUp(): void
-  + AddLevel(levels: int): void
-  + EquipWeapon(weapon: Weapon*): void
-  + EquipArmor(armor: Armor*): void
-  + GetInventoryInfo(): string
-  + SetHealth(health: float): void
-  + SetDamage(damage: float): void
-}
-
-class Enemy {
-  + Enemy(name: string, health: float, damage: float)
-  + DropLoot(): void
-}
-
-class EnemyFactory {
-  + {static} CreateEnemy(type: EnemyType): shared_ptr<Enemy>
-}
-
-enum EnemyType {
-  Goblin
-  Skeleton
-}
-
-class NPC {
-  + NPC(name: string, health: float, damage: float)
-  + Interact(): void
-}
-
-class Merchant {
-  + Merchant(name: string, health: float, damage: float)
-  + Interact(): void
-}
-
-abstract class IItem {
-  + {abstract} GetInfo(): string
-}
-
-abstract class IInventory {
-  + {abstract} GetInfo(): string
-  + {abstract} AddItem(item: IItem*): void
-  + {abstract} RemoveItem(item: IItem*): void
-}
-
-class PlayerInventory {
-  - left_hand: IItem*
-  - right_hand: IItem*
-  - body: IItem*
-  - backpack: vector<IItem*>
-  + PlayerInventory()
-  + AddItem(item: IItem*): void
-  + RemoveItem(item: IItem*): void
-  + GetInfo(): string
-}
-
-class ItemGenerator {
-  + {static} GenerateItem(): shared_ptr<IItem>
-}
-
-class Gem {
-  - type: string
-  - bonus: float
-  + GetInfo(): string
-  + GetType(): string
-  + GetBonus(): float
-}
-
-class Weapon {
-  - name: string
-  - damage: float
-  - number_of_gem_slots: size_t
-  - gems: vector<Gem*>
-  + GetInfo(): string
-  + AddGem(gem: Gem*): void
-  + RemoveGem(gem: Gem*): void
-}
-
-class Sword {
-  + Sword(name: string, damage: float, slots: size_t, gems: vector<Gem*>)
-  + GetInfo(): string
-}
-
-class Armor {
-  - name: string
-  - defence: float
-  - number_of_gem_slots: size_t
-  - gems: vector<Gem*>
-  + Armor(name: string, defence: float, slots: size_t)
-  + GetInfo(): string
-}
-
-class Location {
-    - name: string
-    - properties: std::vector<std::string>
-    + DisplayInfo(): void
-    + HasProperty(property: string): bool
-}
-
-class LocationGenerator {
-    + {static} GenerateLocation(): std::shared_ptr<Location>
+  }
 }
 
 ' Relationships
 
-GameMaster "1" -- "1" Director : has
-GameMaster "1" -- "1" Player : has
-GameMaster "1" -- "1" DefaultLogic : has
-GameInitialisation "1" -- "1" GameMaster : uses
-CommandHandler "1" -- "1" GameMaster : uses
-LogicHandler "1" -- "1" DefaultLogic : has
-DefaultLogic <|-- MainMenuLogic : extends
-DefaultLogic <|-- TownLogic : extends
-DefaultLogic <|-- ShopLogic : extends
-DefaultLogic <|-- FightLogic : extends
-ICommand <|-- NewGame : implements
-ICommand <|-- ExploreCommand : implements
-ICommand <|-- OpenShopCommand : implements
-ICommand <|-- ShowInventoryCommand : implements
-ICommand <|-- ShowCommandsList : implements
-ICommand <|-- Exit : implements
-ICommand <|-- ShowPlayerStats : implements
-DefaultLogic "1" -- "*" ICommand : has
-Character <|-- Player : extends
-Character <|-- Enemy : extends
-Character <|-- NPC : extends
-NPC <|-- Merchant : extends
-EnemyFactory "1" -- "*" Enemy : creates
-Player "1" -- "1" PlayerInventory : has
-IInventory <|-- PlayerInventory : implements
-ItemGenerator "1" -- "*" IItem : creates
-IItem <|-- Gem : implements
-IItem <|-- Weapon : implements
-IItem <|-- Sword : implements
-IItem <|-- Armor : implements
-Weapon <|-- Sword : extends
-FightLogic "1" -- "*" Enemy : has
-LocationGenerator "1" -- "*" Location : creates
-ShowCommandsList "1" -- "1" DefaultLogic : depends on
+' Commands
+ICommand <|-- ExitCommand
+ICommand <|-- ExploreCommand
+ICommand <|-- NewGame
+ICommand <|-- OpenShopCommand
+ICommand <|-- ShowCommandsList
+ICommand <|-- ShowInventoryCommand
+ICommand <|-- ShowPlayerStats
+
+' Logic
+DefaultLogic <|-- MainMenuLogic
+DefaultLogic <|-- TownLogic
+DefaultLogic <|-- ShopLogic
+DefaultLogic <|-- FightLogic
+
+LogicHandler "1" -- "1" DefaultLogic : CurrentLogic
+DefaultLogic "1" -- "*" ICommand : commands
+
+' GameMaster
+GameMaster "1" -- "1" Player : current_player
+GameMaster "1" -- "1" Director : director
+GameMaster "1" -- "1" DefaultLogic : current_logic
+
+'FightLogic
+FightLogic "1" -- "*" Enemy : enemies
+
+'GameInitialisation
+GameInitialisation ..> GameMaster
+
+'MainMenuLogic
+MainMenuLogic ..> NewGame
+
+'TownLogic
+TownLogic ..> ExploreCommand
+TownLogic ..> OpenShopCommand
+TownLogic ..> ShowInventoryCommand
+
+'DefaultLogic
+DefaultLogic ..> ExitCommand
+DefaultLogic ..> ShowCommandsList
+DefaultLogic ..> ShowPlayerStats
+
+'UILogic
+GameInitialisation ..> UILogic
 
 @enduml
