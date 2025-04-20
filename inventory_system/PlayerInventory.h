@@ -9,17 +9,19 @@
 
 class PlayerInventory : public IInventory {
  private:
-  IItem *left_hand;
-  IItem *right_hand;
-  IItem *body;
-  std::vector<IItem *> backpack;
+  std::shared_ptr<IItem> left_hand;
+  std::shared_ptr<IItem> right_hand;
+  std::shared_ptr<IItem> body;
+  std::vector<std::shared_ptr<IItem>> backpack;
 
  public:
   PlayerInventory();
   ~PlayerInventory() override;
 
-  void AddItem(IItem *item) override;
-  void RemoveItem(IItem *item) override;
+  void AddItem(std::shared_ptr<IItem> item) override;
+  void EquipWeapon(std::shared_ptr<IItem> weapon);
+  void EquipArmor(std::shared_ptr<IItem> armor);
+  void RemoveItem(std::shared_ptr<IItem> item) override;
   std::string GetInfo() override;
 };
 

@@ -14,7 +14,7 @@ class Armor : public IItem {
 
  public:
   std::string GetInfo() override;
-  ~Armor() override;
+  ~Armor();
   Armor(const std::string name, float defence, size_t slots);
   void AddGem(Gem* gem);
   void RemoveGem(Gem* gem);

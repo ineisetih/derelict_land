@@ -53,36 +53,32 @@ void Player::LevelUp() {
   std::cout << "New stats - Health: " << health << ", Damage: " << damage << "\n";
 }
 
-// ���������� ������
-// void Player::EquipWeapon(Weapon* weapon) {
-//   if (!weapon) {
-//     throw std::invalid_argument("Cannot equip null weapon");
-//   }
+void Player::EquipWeapon(std::shared_ptr<IItem> weapon) {
+  if (!weapon) {
+    throw std::invalid_argument("Cannot equip null weapon");
+  }
 
-//   if (auto* inv = dynamic_cast<PlayerInventory*>(inventory)) {
-//     inv->EquipWeapon(weapon);
-//     std::cout << "Equipped weapon: " << weapon->GetInfo() << "\n";
-//   }
-// }
+  if (auto* inv = dynamic_cast<PlayerInventory*>(inventory)) {
+    inv->EquipWeapon(weapon);
+    std::cout << "Equipped weapon: " << weapon->GetInfo() << "\n";
+  }
+}
 
-// // ���������� �����
-// void Player::EquipArmor(Armor* armor) {
-//   if (!armor) {
-//     throw std::invalid_argument("Cannot equip null armor");
-//   }
+void Player::EquipArmor(std::shared_ptr<IItem> armor) {
+  if (!armor) {
+    throw std::invalid_argument("Cannot equip null armor");
+  }
 
-//   if (auto* inv = dynamic_cast<PlayerInventory*>(inventory)) {
-//     inv->EquipArmor(armor);
-//     std::cout << "Equipped armor: " << armor->GetInfo() << "\n";
-//   }
-// }
+  if (auto* inv = dynamic_cast<PlayerInventory*>(inventory)) {
+    inv->EquipArmor(armor);
+    std::cout << "Equipped armor: " << armor->GetInfo() << "\n";
+  }
+}
 
-// ��������� ���������� �� ���������
 std::string Player::GetInventoryInfo() const {
   return inventory ? inventory->GetInfo() : "Inventory not initialized";
 }
 
-// �������
 float Player::GetExperience() const {
   return experience;
 }
@@ -91,7 +87,6 @@ int Player::GetLevel() const {
   return level;
 }
 
-// �������
 void Player::SetHealth(float health) {
   if (health < 0)
     health = 0;

@@ -1,10 +1,10 @@
 #include "Gems.h"
 
 std::string Gem::GetInfo() {
-  return type + " gem (+" + std::to_string(bonus) + ")";
+  return name + " gem (+" + std::to_string(bonus) + ")";
 }
 
-std::string Gem::GetType() {
+ItemType Gem::GetType() {
   return type;
 }
 

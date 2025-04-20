@@ -8,13 +8,16 @@
 #define BASE_SKELETON_DMG 8.0f
 #define BASE_GOBLIN_DEF 1.0f
 #define BASE_SKELETON_DEF 3.0f
+#define BASE_GOBLIN_GIVEN_EXP 10.0f
+#define BASE_SKELETON_GIVEN_EXP 20.0f
 
 std::shared_ptr<Enemy> EnemyFactory::CreateEnemy(EnemyType type) {
   switch (type) {
     case Goblin:
-      return std::make_shared<Enemy>("Goblin", BASE_GOBLIN_HP, BASE_GOBLIN_DMG, BASE_GOBLIN_DEF);
+      return std::make_shared<Enemy>("Goblin", BASE_GOBLIN_HP, BASE_GOBLIN_DMG, BASE_GOBLIN_DEF, BASE_GOBLIN_GIVEN_EXP);
     case Skeleton:
-      return std::make_shared<Enemy>("Skeleton", BASE_SKELETON_HP, BASE_SKELETON_DMG, BASE_SKELETON_DEF);
+      return std::make_shared<Enemy>("Skeleton", BASE_SKELETON_HP, BASE_SKELETON_DMG, BASE_SKELETON_DEF,
+                                     BASE_SKELETON_GIVEN_EXP);
     default:
       return nullptr;
   }

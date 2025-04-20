@@ -53,12 +53,5 @@ target_include_directories(derelict_land PUBLIC
     ${UTILITY_DIR}
 )
 
-# --- Compiler Options ---
-target_compile_options(derelict_land PRIVATE
-    -Wall
-    -Wextra
-    -Wpedantic
-)
-
 # --- Install ---
 install(TARGETS derelict_land DESTINATION bin)

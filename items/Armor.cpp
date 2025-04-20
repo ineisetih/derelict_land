@@ -2,7 +2,7 @@
 #include <sstream>
 #include <algorithm>
 
-Armor::Armor(const std::string name, float defence, size_t slots)
+Armor::Armor(const std::string name, float defence, size_t slots = 0)
     : name(name), defence(defence), number_of_gem_slots(slots) {
 }
 

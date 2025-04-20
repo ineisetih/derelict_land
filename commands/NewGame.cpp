@@ -12,5 +12,6 @@ void NewGame::CommandExecute() {
   SaveManager::SaveGame(player);
 
   std::cout << "New game started for " << name << "!\n";
+  GameMaster::GetInstance()->SetPlayer(player);
   GameMaster::GetInstance()->SetCurrentLogic(TownLogic::GetInstance());
 }

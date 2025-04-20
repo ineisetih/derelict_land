@@ -5,6 +5,7 @@
 #include "ShowCommandsList.h"
 #include "ShowPlayerStats.h"
 #include "OnPlayerDeath.h"
+#include "GiveLoot.h"
 
 FightLogic* FightLogic::MainFightLogicInstance = nullptr;
 
@@ -38,6 +39,7 @@ void FightLogic::StartFight() {
       throw std::runtime_error("Player not initialized");
     if (enemies.empty())
       throw std::runtime_error("No enemies in combat");
+    std::vector<std::shared_ptr<IItem>> loot;
     while (player->GetHealth() > 0 && !enemies.empty()) {
       float player_damage = player->GetDamage();
       Enemy* current_enemy = enemies.front();
@@ -50,14 +52,17 @@ void FightLogic::StartFight() {
         player->Take_Damage(enemy->GetDamage());
       }
       if (current_enemy->GetHealth() <= 0) {
-        current_enemy->DropLoot();
-        enemies.erase(enemies.begin());
+        loot.push_back(current_enemy->DropLoot());
+        player->AddExperience(current_enemy->GetGivenExp());
+        RemoveEnemy(current_enemy);
       }
       if (player->GetHealth() <= 0) {
         OnPlayerDeath::Execute();
         return;
       }
     }
+    std::cout << "Take your reward!\n";
+    GiveLoot::Execute(loot);
   } catch (const std::exception& e) {
     std::cerr << "Combat error: " << e.what() << '\n';
     GameMaster::GetInstance()->SetCurrentLogic(TownLogic::GetInstance());

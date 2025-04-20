@@ -12,3 +12,7 @@ std::string Sword::GetInfo() {
   ss << "Sword " << name << " (Damage: " << damage << ", Gems: " << gems.size() << "/" << number_of_gem_slots << ")";
   return ss.str();
 }
+ItemType Sword::GetType() {
+  return type;
+}
+

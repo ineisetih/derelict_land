@@ -28,8 +28,8 @@ class Player : public Character {
   void LevelUp();
   void AddLevel(int levels);
 
-  void EquipWeapon(Weapon* weapon);
-  void EquipArmor(Armor* armor);
+  void EquipWeapon(std::shared_ptr<IItem> weapon);
+  void EquipArmor(std::shared_ptr<IItem> armor);
   std::string GetInventoryInfo() const;
 
   void SetHealth(float health);

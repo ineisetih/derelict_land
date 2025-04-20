@@ -4,14 +4,15 @@
 #include "ItemInteface.h"
 
 class Gem : public IItem {
-  std::string type;
+  ItemType type;
+  std::string name;
   float bonus;
 
  public:
-  Gem(std::string type, float bonus) : type(type), bonus(bonus) {};
+  Gem(std::string name, ItemType type, float bonus) : name(name), type(type), bonus(bonus) {};
   float GetBonus();
-  std::string GetType();
+  ItemType GetType();
   std::string GetInfo() override;
 };
 
-#endif // GEMS_H
+#endif  // GEMS_H
