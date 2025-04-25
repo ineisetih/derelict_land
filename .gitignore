@@ -1,0 +1,6 @@
+.qodo
+*.exe
+.vscode
+.vs/
+*.o
+build

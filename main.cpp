@@ -1,0 +1,22 @@
+#include "commands\CommandHandler.h"
+#include "main_game_obj\GameInitialisation.h"
+#include <iostream>
+
+int main() {
+  try {
+    GameInitialisation::StartGame();
+
+    CommandHandler* handler = CommandHandler::GetInstance();
+    std::string input;
+    while (true) {
+      std::cout << "> ";
+      std::getline(std::cin, input);
+      handler->ExecuteCommand(input);
+    }
+  } catch (const std::exception& e) {
+    std::cerr << "Error: " << e.what() << '\n';
+    return 1;
+  }
+
+  return 0;
+}
