@@ -17,6 +17,7 @@ class Weapon : public IItem {
 
   ~Weapon();
   std::string GetInfo() override;
+  float GetDamage();
   void AddGem(Gem* gem);
   void RemoveGem(Gem* gem);
 };

@@ -4,4 +4,5 @@
 
 void OpenShopCommand::CommandExecute() {
   GameMaster::GetInstance()->SetCurrentLogic(ShopLogic::GetInstance());
+  ShopLogic::GetInstance()->OnShopOpen();
 }

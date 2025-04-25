@@ -9,8 +9,8 @@
 class EnemyFactory
 {
 public:
-	virtual std::shared_ptr<Enemy> CreateEnemy(EnemyType type);
-    virtual ~EnemyFactory() {}
+	static std::shared_ptr<Enemy> CreateEnemy(EnemyType type);
+    ~EnemyFactory() {}
 };
 
 #endif // ENEMYFACTORY_H

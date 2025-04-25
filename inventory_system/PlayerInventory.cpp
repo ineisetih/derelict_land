@@ -1,5 +1,6 @@
 #include "PlayerInventory.h"
 
+
 #include <algorithm>
 #include <string>
 #include <iostream>
@@ -22,7 +23,7 @@ void PlayerInventory::RemoveItem(std::shared_ptr<IItem> item) {
   }
 }
 
-void PlayerInventory::EquipArmor(std::shared_ptr<IItem> armor) {
+bool PlayerInventory::EquipArmor(std::shared_ptr<IItem> armor) {
   if (!body) {
     body = armor;
   } else {
@@ -33,11 +34,14 @@ void PlayerInventory::EquipArmor(std::shared_ptr<IItem> armor) {
     std::cin >> user_input;
     if (user_input == "y") {
       body = armor;
+      return true;
     }
+    return false;
   }
+  return false;
 }
 
-void PlayerInventory::EquipWeapon(std::shared_ptr<IItem> weapon) {
+bool PlayerInventory::EquipWeapon(std::shared_ptr<IItem> weapon) {
   if (!left_hand) {
     left_hand = weapon;
   } else {
@@ -48,8 +52,11 @@ void PlayerInventory::EquipWeapon(std::shared_ptr<IItem> weapon) {
     std::cin >> user_input;
     if (user_input == "y") {
       left_hand = weapon;
+      return true;
     }
+    return false;
   }
+  return false;
 }
 
 std::string PlayerInventory::GetInfo() {

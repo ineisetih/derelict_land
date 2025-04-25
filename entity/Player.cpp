@@ -7,7 +7,6 @@
 #define HEALTH_UP_PER_LVL 20
 #define EXP_DOWN_PER_LVL 100
 
-
 Player* Player::instance = nullptr;
 
 Player::Player(std::string name, float health, float damage)
@@ -59,9 +58,22 @@ void Player::EquipWeapon(std::shared_ptr<IItem> weapon) {
   }
 
   if (auto* inv = dynamic_cast<PlayerInventory*>(inventory)) {
-    inv->EquipWeapon(weapon);
-    std::cout << "Equipped weapon: " << weapon->GetInfo() << "\n";
+    bool is_equipped = inv->EquipWeapon(weapon);
+    if (is_equipped) {
+      std::cout << "Equipped weapon: " << weapon->GetInfo() << "\n";
+    }
+    auto* weaponPtr = dynamic_cast<Weapon*>(weapon.get());
+    Player::CreatePlayer()->damage += weaponPtr->GetDamage();
+      
   }
+}
+
+void Player::AddItemToBackpack(std::shared_ptr<IItem> item) {
+  inventory->AddItem(item);
+}
+
+void Player::RemoveItemFromBackpack(std::shared_ptr<IItem> item) {
+  inventory->RemoveItem(item);
 }
 
 void Player::EquipArmor(std::shared_ptr<IItem> armor) {

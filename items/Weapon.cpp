@@ -21,6 +21,15 @@ void Weapon::AddGem(Gem* gem) {
   }
 }
 
+float Weapon::GetDamage() {
+  float temp = 0;
+  temp += damage;
+  for (auto gem : gems) {
+    temp += gem->GetBonus();
+  }
+  return damage;
+}
+
 void Weapon::RemoveGem(Gem* gem) {
   auto it = std::find(gems.begin(), gems.end(), gem);
   if (it != gems.end()) {

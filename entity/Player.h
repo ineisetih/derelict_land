@@ -30,6 +30,8 @@ class Player : public Character {
 
   void EquipWeapon(std::shared_ptr<IItem> weapon);
   void EquipArmor(std::shared_ptr<IItem> armor);
+  void AddItemToBackpack(std::shared_ptr<IItem> item);
+  void RemoveItemFromBackpack(std::shared_ptr<IItem> item);
   std::string GetInventoryInfo() const;
 
   void SetHealth(float health);

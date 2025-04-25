@@ -10,7 +10,6 @@ class LogicHandler {
  public:
   static LogicHandler *LogicHandlerInstance;
   static LogicHandler *GetInstance();
-  DefaultLogic *CurrentLogic;
   void ChangeLogic(DefaultLogic *new_logic);
 };
 

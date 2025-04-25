@@ -9,13 +9,14 @@ class FightLogic : public DefaultLogic {
  private:
   FightLogic() = default;
   static FightLogic* MainFightLogicInstance;
-  std::vector<Enemy*> enemies;
+  std::vector<std::shared_ptr<Enemy>> enemies;
 
  public:
   static FightLogic* GetInstance();
-  void AddEnemy(Enemy* enemy);
-  void RemoveEnemy(Enemy* enemy);
-  std::vector<Enemy*> GetEnemies();
+  void AddEnemy(std::shared_ptr<Enemy> enemy);
+  void RemoveEnemy(std::shared_ptr<Enemy> enemy);
+  void CreateEnemies();
+  std::vector<std::shared_ptr<Enemy>> GetEnemies();
 
  public:
   void StartFight();
