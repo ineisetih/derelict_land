@@ -1,7 +1,7 @@
 #ifndef LOCATIONSGENERATOR_H
 #define LOCATIONSGENERATOR_H
 
-#include "locations.h"
+#include "Locations.h"
 #include <random>
 
 class LocationGenerator {

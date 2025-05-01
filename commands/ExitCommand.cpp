@@ -1,6 +1,7 @@
 #include "ExitCommand.h"
-#include <process.h>
+
+#include <cstdlib>
 
 void Exit::CommandExecute() {
-  exit(0);
+  std::exit(0);
 }
