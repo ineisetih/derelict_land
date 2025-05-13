@@ -15,7 +15,7 @@ class Player : public Character {
   int level;
   static Player* instance;
 
-  Player(std::string name, float health, float damage);
+  Player(std::string name, float health = BASE_HP, float damage = BASE_DMG);
 
  public:
   ~Player() override;
@@ -36,6 +36,9 @@ class Player : public Character {
 
   void SetHealth(float health);
   void SetDamage(float damage);
+  void SetExperience(float xp);
+  void SetLevel(int lvl);
+  void SetInventory(IInventory* inventory);
 };
 
 #endif  // PLAYER_H

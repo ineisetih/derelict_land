@@ -9,7 +9,6 @@ void NewGame::CommandExecute() {
   std::getline(std::cin, name);
 
   Player* player = Player::CreatePlayer(name, 100.0f, 10.0f);
-  SaveManager::SaveGame(player);
 
   std::cout << "New game started for " << name << "!\n";
   GameMaster::GetInstance()->SetPlayer(player);

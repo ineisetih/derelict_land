@@ -27,6 +27,11 @@ void Character::Heal(float heal) {
 std::string Character::GetName() {
   return name;
 }
+
+IInventory* Character::GetInventory() {
+  return inventory;
+}
+
 float Character::GetHealth() {
   return health;
 }

@@ -21,7 +21,8 @@ class Character {
   virtual void Attack(Character* target);
   virtual void Take_Damage(float damage);
   virtual void Heal(float heal);
-
+  
+  IInventory* GetInventory();
   std::string GetName();
   float GetHealth();
   float GetDamage();

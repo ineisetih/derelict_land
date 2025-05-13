@@ -21,6 +21,10 @@ class PlayerInventory : public IInventory {
   void AddItem(std::shared_ptr<IItem> item) override;
   bool EquipWeapon(std::shared_ptr<IItem> weapon);
   bool EquipArmor(std::shared_ptr<IItem> armor);
+  std::shared_ptr<IItem> GetLeftHand();
+  std::shared_ptr<IItem> GetRightHand();
+  std::shared_ptr<IItem> GetBody();
+  std::vector<std::shared_ptr<IItem>> GetBackpack();
   void RemoveItem(std::shared_ptr<IItem> item) override;
   std::string GetInfo() override;
 };

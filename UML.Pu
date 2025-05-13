@@ -1,9 +1,7 @@
-@startuml
-' Style settings
+@startuml name
 skinparam classAttributeIconSize 0
 skinparam linetype ortho
 
-' Classes
 class Character {
   - name: String
   - health: float
@@ -327,74 +325,71 @@ DefaultLogic <|-- ShopLogic : inheritance
 DefaultLogic <|-- FightLogic : inheritance
 DefaultLogic <|-- MainMenuLogic : inheritance
 
-Player "1" -- "1" PlayerInventory : has >
-Player "1" -- "0..*" PlayerSave : saves >
-GameMaster "1" -- "0..1" Player : manages >
-GameMaster "1" -- "0..1" DefaultLogic : manages >
-LogicHandler "1" -- "1" GameMaster : uses >
-CommandHandler "1" -- "1" GameMaster : uses >
-DefaultLogic "1" -- "*" ICommand : contains >
-FightLogic "1" -- "*" Enemy : contains >
-ShopLogic "1" -- "*" IItem : contains >
-GiveLoot "1" -- "*" IItem : contains >
-PlayerGetItem "1" -- "1" Player : uses >
-GetItemFromShop "1" -- "1" ShopLogic : uses >
-ShowCommandsList "1" -- "1" DefaultLogic : uses >
-ExploreCommand "1" -- "1" LogicHandler : uses >
-OpenShopCommand "1" -- "1" ShopLogic : uses >
-BuyCommand "1" -- "1" GetItemFromShop : uses >
-BuyCommand "1" -- "1" PlayerGetItem : uses >
-FightCommand "1" -- "1" FightLogic : uses >
-EscapeCommand "1" -- "1" TownLogic : uses >
-OnPlayerDeath "1" -- "1" MainMenuLogic : uses >
-LoadGameCommand "1" -- "1" SaveManager : uses >
-NewGame "1" -- "1" SaveManager : uses >
-ListSavesCommand "1" -- "1" SaveManager : uses >
-EnemyFactory "1" -- "*" Enemy : creates >
-Weapon "1" -- "*" Gem : contains >
-Armor "1" -- "*" Gem : contains >
-Player "1" -- "1" SaveManager : uses >
-Player "1" -- "1" PlayerInventory : uses >
-Player "1" -- "1" PlayerGetItem : uses >
-Player "1" -- "1" OnPlayerDeath : uses >
-Player "1" -- "1" ShowPlayerStats : uses >
-Player "1" -- "1" ShowInventoryCommand : uses >
-Player "1" -- "1" FightLogic : uses >
-Player "1" -- "1" GiveLoot : uses >
-GameInitialisation "1" -- "1" MainMenuLogic : uses >
-GameInitialisation "1" -- "1" GameMaster : uses >
-GameInitialisation "1" -- "1" CommandHandler : uses >
-GameInitialisation "1" -- "1" LogicHandler : uses >
-GameInitialisation "1" -- "1" Player : uses >
-Player "1" -- "0..*" Enemy : can_attack >
-Character "1" -- "0..*" Character : can_attack >
-Player "1" -- "0..*" IItem : can_equip >
-Player "1" -- "0..*" NPC : can_interact >
-Player "1" -- "0..*" Merchant : can_interact >
-Enemy "1" -- "0..*" Player : can_attack >
-Enemy "1" -- "0..*" Enemy : can_attack >
-Merchant "1" -- "0..*" Player : can_interact >
-NPC "1" -- "0..*" Player : can_interact >
-ShopLogic "1" -- "0..*" Player : can_interact >
-FightLogic "1" -- "0..*" Player : can_interact >
-TownLogic "1" -- "0..*" Player : can_interact >
-MainMenuLogic "1" -- "0..*" Player : can_interact >
-GameMaster "1" -- "*" Character : manages >
-GameMaster "1" -- "*" IItem : manages >
-GameMaster "1" -- "*" ICommand : manages >
-GameMaster "1" -- "*" DefaultLogic : manages >
-GameMaster "1" -- "*" LogicHandler : manages >
-GameMaster "1" -- "*" SaveManager : manages >
-GameMaster "1" -- "*" GameInitialisation : manages >
-GameMaster "1" -- "*" PlayerInventory : manages >
-GameMaster "1" -- "*" PlayerGetItem : manages >
-GameMaster "1" -- "*" GetItemFromShop : manages >
-GameMaster "1" -- "*" GiveLoot : manages >
-GameMaster "1" -- "*" OnPlayerDeath : manages >
-GameMaster "1" -- "*" EnemyFactory : manages >
-GameMaster "1" -- "*" ItemGenerator : manages >
-ItemGenerator "1" -- "*" FightLogic : manages >
-ItemGenerator "1" -- "*" ShopLogic : manages >
+Player "1" -- "1" PlayerInventory 
+Player "1" -- "0..*" PlayerSave
+GameMaster "1" -- "0..1" Player 
+GameMaster "1" -- "0..1" DefaultLogic 
+LogicHandler "1" -- "1" GameMaster
+CommandHandler "1" -- "1" GameMaster 
+DefaultLogic "1" -- "*" ICommand 
+FightLogic "1" -- "*" Enemy 
+GiveLoot "1" -- "*" IItem 
+PlayerGetItem "1" -- "1" Player
+GetItemFromShop "1" -- "1" ShopLogic 
+ShowCommandsList "1" -- "1" DefaultLogic 
+ExploreCommand "1" -- "1" LogicHandler 
+OpenShopCommand "1" -- "1" ShopLogic 
+BuyCommand "1" -- "1" GetItemFromShop 
+BuyCommand "1" -- "1" PlayerGetItem 
+FightCommand "1" -- "1" FightLogic 
+EscapeCommand "1" -- "1" TownLogic 
+OnPlayerDeath "1" -- "1" MainMenuLogic 
+LoadGameCommand "1" -- "1" SaveManager 
+NewGame "1" -- "1" SaveManager 
+ListSavesCommand "1" -- "1" SaveManager 
+EnemyFactory "1" -- "*" Enemy 
+Weapon "1" -- "*" Gem 
+Armor "1" -- "*" Gem 
+Player "1" -- "1" SaveManager 
+Player "1" -- "1" PlayerInventory 
+Player "1" -- "1" PlayerGetItem 
+Player "1" -- "1" OnPlayerDeath 
+Player "1" -- "1" ShowPlayerStats 
+Player "1" -- "1" ShowInventoryCommand 
+Player "1" -- "1" FightLogic 
+Player "1" -- "1" GiveLoot 
+GameInitialisation "1" -- "1" MainMenuLogic 
+GameInitialisation "1" -- "1" GameMaster 
+GameInitialisation "1" -- "1" CommandHandler 
+GameInitialisation "1" -- "1" LogicHandler 
+GameInitialisation "1" -- "1" Player 
+Player "1" -- "0..*" Enemy 
+Player "1" -- "0..*" IItem 
+Player "1" -- "0..*" NPC 
+Player "1" -- "0..*" Merchant 
+Enemy "1" -- "0..*" Player 
+Merchant "1" -- "0..*" Player 
+NPC "1" -- "0..*" Player 
+ShopLogic "1" -- "0..*" Player 
+FightLogic "1" -- "0..*" Player 
+TownLogic "1" -- "0..*" Player 
+MainMenuLogic "1" -- "0..*" Player 
+GameMaster "1" -- "*" Character
+GameMaster "1" -- "*" IItem
+GameMaster "1" -- "*" ICommand 
+GameMaster "1" -- "*" DefaultLogic 
+GameMaster "1" -- "*" LogicHandler 
+GameMaster "1" -- "*" SaveManager 
+GameMaster "1" -- "*" GameInitialisation 
+GameMaster "1" -- "*" PlayerInventory 
+GameMaster "1" -- "*" PlayerGetItem 
+GameMaster "1" -- "*" GetItemFromShop 
+GameMaster "1" -- "*" GiveLoot 
+GameMaster "1" -- "*" OnPlayerDeath 
+GameMaster "1" -- "*" EnemyFactory 
+GameMaster "1" -- "*" ItemGenerator 
+ItemGenerator "1" -- "*" FightLogic 
+ItemGenerator "1" -- "*" ShopLogic 
 ItemType -- "*" IItem 
 EnemyType -- "*" Enemy
 

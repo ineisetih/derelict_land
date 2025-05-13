@@ -1,6 +1,7 @@
 #include "ShopLogic.h"
 #include "BuyCommand.h"
 #include "ExploreCommand.h"
+#include "ShowInventoryCommand.h"
 
 ShopLogic* ShopLogic::ShopLogicInstance = nullptr;
 
@@ -8,6 +9,7 @@ ShopLogic* ShopLogic::GetInstance() {
   if (!ShopLogicInstance) {
     ShopLogicInstance = new ShopLogic();
     ShopLogicInstance->AddCommand("buy", std::make_shared<BuyCommand>());
+    ShopLogicInstance->AddCommand("inventory", std::make_shared<ShowInventoryCommand>());
     ShopLogicInstance->AddCommand("explore", std::make_shared<ExploreCommand>());
 
   }

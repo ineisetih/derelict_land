@@ -14,10 +14,9 @@ void GiveLoot::Execute(std::vector<std::shared_ptr<IItem>> loot) {
     }
     std::cout << "To take reward type numbers of items\n";
     std::string user_input;
-    std::cin >> user_input;
+    std::getline(std::cin, user_input);
     for (auto a : user_input) {  
-      if (a != ' ') {
-        std::cout << static_cast<int>(a) - 1 << std::endl;
+      if (a != ' ' && a != '\n') {
         std::cout << loot[static_cast<int>(a) - DIFF_CHAR_INT]->GetInfo() << std::endl;
         PlayerGetItem::Execute(loot[static_cast<int>(a) - DIFF_CHAR_INT]);
       }

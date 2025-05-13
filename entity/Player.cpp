@@ -1,4 +1,4 @@
-#include "player.h"
+#include "Player.h"
 #include "PlayerInventory.h"
 #include "SaveManager.h"
 #include <stdexcept>
@@ -6,6 +6,8 @@
 #define DAMAGE_UP_PER_LVL 5
 #define HEALTH_UP_PER_LVL 20
 #define EXP_DOWN_PER_LVL 100
+#define BASE_HP 100.0f
+#define BASE_DMG 10.0f
 
 Player* Player::instance = nullptr;
 
@@ -16,7 +18,6 @@ Player::Player(std::string name, float health, float damage)
 
 Player::~Player() {
   if (instance) {
-    SaveManager::SaveGame(instance);
     delete inventory;
     instance = nullptr;
   }
@@ -88,7 +89,12 @@ void Player::EquipArmor(std::shared_ptr<IItem> armor) {
 }
 
 std::string Player::GetInventoryInfo() const {
+  try{
   return inventory ? inventory->GetInfo() : "Inventory not initialized";
+  } catch (const std::exception& e) {
+    std::cerr << "Inventory error: " << e.what() << '\n';
+  }
+  return "";
 }
 
 float Player::GetExperience() const {
@@ -111,6 +117,11 @@ void Player::SetDamage(float damage) {
   this->damage = damage;
 }
 
+void Player::SetInventory(IInventory* inventory) {
+  this->inventory = inventory;
+}
+
+
 void Player::AddLevel(int levels) {
   if (levels <= 0)
     return;
@@ -119,3 +130,5 @@ void Player::AddLevel(int levels) {
     LevelUp();
   }
 }
+void Player::SetExperience(float xp) { experience = xp; }
+void Player::SetLevel(int lvl) { level = lvl; }
