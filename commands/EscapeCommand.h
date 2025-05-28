@@ -5,6 +5,7 @@
 
 class EscapeCommand : public ICommand {
  public:
+  // Выполняет команду побега.
   void CommandExecute() override;
 };
 

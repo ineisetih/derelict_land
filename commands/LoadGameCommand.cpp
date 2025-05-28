@@ -5,6 +5,9 @@
 
 #include <iostream>
 
+// Выполняет команду загрузки игры.
+// Запрашивает у пользователя имя игрока, загружает его данные.
+// В случае успеха, выводит информацию о загруженном игроке и переключает логику на городскую.
 void LoadGameCommand::CommandExecute() {
   std::cout << "Enter player name to load: ";
   std::string name;
@@ -17,7 +20,5 @@ void LoadGameCommand::CommandExecute() {
   }
 
   std::cout << "Loaded player: " << name << " (Level " << player->GetLevel() << ")" << std::endl;
-  std::cout << "stage 1\n";
   LogicHandler::GetInstance()->ChangeLogic(TownLogic::GetInstance());
-  std::cout << "stage 2\n";
 }

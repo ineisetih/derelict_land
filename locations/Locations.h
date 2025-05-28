@@ -19,13 +19,22 @@ class Locations {
   std::vector<std::string> properties; 
 
  public:
+  // Конструктор локации.
+  // type - тип локации (например, DESERT, FOREST).
+  // weather - тип погоды в локации (например, RAIN, SUN).
   Locations(LocationType type, WeatherType weater);
+  // Добавляет свойство (особенность) к локации.
   void AddProperty(const std::string& property);  
+  // Возвращает тип локации.
   LocationType GetType();
+  // Возвращает погоду в локации.
   WeatherType GetWeather();
+  // Возвращает список свойств локации.
   std::vector<std::string> GetProperties();
+  // Проверяет, обладает ли локация указанным свойством.
   bool HasProperty(const std::string& property);  
 
+  // Отображает информацию о локации в консоль.
   void DisplayInfo();  
 };
 

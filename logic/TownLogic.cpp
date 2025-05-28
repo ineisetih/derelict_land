@@ -6,6 +6,8 @@
 
 TownLogic* TownLogic::TownLogicInstance = nullptr;
 
+// Возвращает единственный экземпляр класса TownLogic (Singleton).
+// При первом вызове инициализирует команды, доступные в городе.
 TownLogic* TownLogic::GetInstance() {
   if (!TownLogicInstance) {
     TownLogicInstance = new TownLogic();

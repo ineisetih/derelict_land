@@ -9,7 +9,9 @@ class CommandHandler {
   CommandHandler() = default;
 
  public:
+  // Статический метод для получения единственного экземпляра обработчика команд.
   static CommandHandler* GetInstance();
+  // Выполняет команду, переданную в виде строки.
   void ExecuteCommand(std::string& command);
 };
 

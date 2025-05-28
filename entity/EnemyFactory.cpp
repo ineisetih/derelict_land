@@ -11,6 +11,7 @@
 #define BASE_GOBLIN_GIVEN_EXP 10.0f
 #define BASE_SKELETON_GIVEN_EXP 20.0f
 
+// Создает и возвращает умный указатель на объект врага указанного типа.
 std::shared_ptr<Enemy> EnemyFactory::CreateEnemy(EnemyType type) {
   switch (type) {
     case Goblin:

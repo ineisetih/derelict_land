@@ -7,6 +7,7 @@
 
 class ItemGenerator {
  public:
+  // Статический метод для генерации случайного предмета.
   static std::shared_ptr<IItem> GenerateItem();
 };
 

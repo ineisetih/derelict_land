@@ -1,5 +1,6 @@
 #include "LocationsGenerator.h"
 
+// Генерирует и возвращает умный указатель на объект локации со случайным типом, погодой и набором свойств.
 std::shared_ptr<Locations> LocationGenerator::GenerateLocation() {
   std::srand(std::time(0));  // Инициализация генератора случайных чисел
 

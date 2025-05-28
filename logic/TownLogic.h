@@ -9,6 +9,7 @@ class TownLogic : public DefaultLogic {
   static TownLogic *TownLogicInstance;
 
  public:
+  // Статический метод для получения единственного экземпляра логики города.
   static TownLogic *GetInstance();
 };
 

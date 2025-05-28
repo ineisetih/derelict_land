@@ -18,6 +18,8 @@
 using json = nlohmann::json;
 const char* DB_PATH = "player_progress.db";
 
+// Сохраняет состояние игры для указанного игрока в базу данных SQLite.
+// Создает таблицу player_progress, если она не существует, и записывает или обновляет данные игрока.
 void SaveManager::SaveGame(std::shared_ptr<Player> player) {
   sqlite3* db;
   char* errMsg = nullptr;
@@ -88,6 +90,8 @@ void SaveManager::SaveGame(std::shared_ptr<Player> player) {
   sqlite3_close(db);
 }
 
+// Загружает состояние игры для игрока с указанным именем из базы данных SQLite.
+// Возвращает умный указатель на объект Player в случае успеха, иначе nullptr.
 std::shared_ptr<Player> SaveManager::LoadGame(const std::string& playerName, const std::string& filename) {
   sqlite3* db;
   if (sqlite3_open(DB_PATH, &db) != SQLITE_OK) {
@@ -155,6 +159,8 @@ std::shared_ptr<Player> SaveManager::LoadGame(const std::string& playerName, con
   return player;
 }
 
+// Возвращает вектор строк с именами всех сохраненных игроков из базы данных SQLite.
+// Параметр filename в данной реализации не используется, так как путь к БД фиксирован (DB_PATH).
 std::vector<std::string> SaveManager::ListSaves(const std::string& filename) {
   std::vector<std::string> saves;
   sqlite3* db;
@@ -185,6 +191,8 @@ std::vector<std::string> SaveManager::ListSaves(const std::string& filename) {
   return saves;
 }
 
+// Разбирает строку, представляющую предмет, и создает соответствующий объект IItem.
+// Поддерживает разбор "Sword", "Chestplate" и "Gem".
 std::shared_ptr<IItem> SaveManager::ParseItem(const std::string& itemStr) {
   try {
     if (itemStr.find("Sword") != std::string::npos) {

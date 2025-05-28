@@ -6,6 +6,8 @@
 
 MainMenuLogic* MainMenuLogic::MainMenuLogicInstance = nullptr;
 
+// Возвращает единственный экземпляр класса MainMenuLogic (Singleton).
+// При первом вызове инициализирует команды, доступные в главном меню.
 MainMenuLogic* MainMenuLogic::GetInstance() {
   if (!MainMenuLogicInstance) {
     MainMenuLogicInstance = new MainMenuLogic();
@@ -15,4 +17,3 @@ MainMenuLogic* MainMenuLogic::GetInstance() {
   }
   return MainMenuLogicInstance;
 }
-

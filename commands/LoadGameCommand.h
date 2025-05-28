@@ -5,6 +5,7 @@
 
 class LoadGameCommand : public ICommand {
  public:
+  // Выполняет команду загрузки игры.
   void CommandExecute() override;
 };
 #endif //LOAD_GAME_COMMAND_H

@@ -10,6 +10,7 @@
 #define TEMPLATE_4 0
 #define TEMPLATE_5 AttackGem
 
+// Генерирует и возвращает умный указатель на случайно выбранный предмет (меч, нагрудник или камень).
 std::shared_ptr<IItem> ItemGenerator::GenerateItem() {
   int choice = rand() % 3;
   switch (choice) {

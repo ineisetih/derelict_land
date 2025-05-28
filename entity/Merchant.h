@@ -5,7 +5,9 @@
 
 class Merchant : public NPC {
  public:
+  // Конструктор торговца.
   Merchant(std::string name, float health, float damage);
+  // Переопределенный метод взаимодействия с торговцем.
   void Interact() override;
 };
 

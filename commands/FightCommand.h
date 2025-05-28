@@ -5,6 +5,7 @@
 
 class FightCommand : public ICommand {
  public:
+  // Выполняет команду начала боя.
   void CommandExecute() override;
 };
 

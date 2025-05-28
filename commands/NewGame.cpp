@@ -5,6 +5,9 @@
 #include <iostream>
 #include <memory> 
 
+// Выполняет команду начала новой игры.
+// Запрашивает у пользователя имя игрока, создает нового игрока, сохраняет его.
+// Затем переключает игровую логику на городскую.
 void NewGame::CommandExecute() {
   std::string name;
   std::cout << "Enter player name: ";

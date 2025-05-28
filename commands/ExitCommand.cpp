@@ -4,6 +4,8 @@
 
 #include <cstdlib>
 
+// Выполняет команду выхода из игры.
+// Сохраняет прогресс текущего игрока (если он существует) и завершает выполнение программы.
 void Exit::CommandExecute() {
   std::shared_ptr<Player> player = Player::GetInstance(); 
   if (player) {

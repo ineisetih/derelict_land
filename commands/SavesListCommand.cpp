@@ -3,6 +3,8 @@
 #include <iostream>
 #include <string>
 
+// Выполняет команду отображения списка сохранений.
+// Получает список имен сохраненных игр и выводит их в консоль.
 void ListSavesCommand::CommandExecute() {
   auto saves = SaveManager::ListSaves();
   if (saves.empty()) {

@@ -2,6 +2,7 @@
 #include "Player.h"
 
 void ShowPlayerStats::CommandExecute() {
+  // Получает экземпляр игрока.
   std::shared_ptr<Player> player = Player::GetInstance(); 
   if (player) {
     std::cout << "Hp: " << player->GetHealth() << std::endl;

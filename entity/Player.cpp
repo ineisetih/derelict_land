@@ -11,25 +11,32 @@
 
 std::shared_ptr<Player> Player::instance = nullptr; 
 
+// Приватный конструктор класса Player.
+// Инициализирует игрока с именем, здоровьем, уроном, начальным опытом и уровнем.
 Player::Player(std::string name, float health, float damage)
     : Character(name, health, damage), experience(0), level(1) {
   inventory = new PlayerInventory();
 }
 
+// Деструктор класса Player.
+// Освобождает память, выделенную под инвентарь.
 Player::~Player() {
   delete inventory; 
 }
+// Возвращает единственный экземпляр класса Player (Singleton).
 std::shared_ptr<Player> Player::GetInstance(){ 
   if (!instance) {
   }
   return instance;
 }
 
+// Создает или возвращает единственный экземпляр класса Player (Singleton).
 std::shared_ptr<Player> Player::CreatePlayer(std::string name, float health, float damage) { 
   instance = std::shared_ptr<Player>(new Player(name, health, damage));
   return instance;
 }
 
+// Добавляет опыт игроку и проверяет возможность повышения уровня.
 void Player::AddExperience(float exp) {
   if (exp < 0) {
     throw std::invalid_argument("Experience cannot be negative");
@@ -43,6 +50,7 @@ void Player::AddExperience(float exp) {
   }
 }
 
+// Повышает уровень игрока, увеличивая его характеристики и сбрасывая часть опыта.
 void Player::LevelUp() {
   level++;
   damage += DAMAGE_UP_PER_LVL;
@@ -53,6 +61,7 @@ void Player::LevelUp() {
   std::cout << "New stats - Health: " << health << ", Damage: " << damage << "\n";
 }
 
+// Экипирует оружие на игрока, если это возможно, и обновляет урон игрока.
 void Player::EquipWeapon(std::shared_ptr<IItem> weapon) {
   if (!weapon) {
     throw std::invalid_argument("Cannot equip null weapon");
@@ -74,14 +83,17 @@ void Player::EquipWeapon(std::shared_ptr<IItem> weapon) {
   }
 }
 
+// Добавляет предмет в рюкзак игрока.
 void Player::AddItemToBackpack(std::shared_ptr<IItem> item) {
   inventory->AddItem(item);
 }
 
+// Удаляет предмет из рюкзака игрока.
 void Player::RemoveItemFromBackpack(std::shared_ptr<IItem> item) {
   inventory->RemoveItem(item);
 }
 
+// Экипирует броню на игрока.
 void Player::EquipArmor(std::shared_ptr<IItem> armor) {
   if (!armor) {
     throw std::invalid_argument("Cannot equip null armor");
@@ -93,6 +105,7 @@ void Player::EquipArmor(std::shared_ptr<IItem> armor) {
   }
 }
 
+// Возвращает информацию об инвентаре игрока в виде строки.
 std::string Player::GetInventoryInfo() const {
   try {
     std::cout << "Getting inventory info...\n";
@@ -103,30 +116,36 @@ std::string Player::GetInventoryInfo() const {
   return "";
 }
 
+// Возвращает текущее количество опыта игрока.
 float Player::GetExperience() const {
   return experience;
 }
 
+// Возвращает текущий уровень игрока.
 int Player::GetLevel() const {
   return level;
 }
 
+// Устанавливает здоровье игрока, не позволяя ему быть отрицательным.
 void Player::SetHealth(float health) {
   if (health < 0)
     health = 0;
   this->health = health;
 }
 
+// Устанавливает урон игрока, не позволяя ему быть отрицательным.
 void Player::SetDamage(float damage) {
   if (damage < 0)
     damage = 0;
   this->damage = damage;
 }
 
+// Устанавливает инвентарь для игрока.
 void Player::SetInventory(IInventory* inventory) {
   this->inventory = inventory;
 }
 
+// Повышает уровень игрока на указанное количество уровней.
 void Player::AddLevel(int levels) {
   if (levels <= 0)
     return;
@@ -135,9 +154,11 @@ void Player::AddLevel(int levels) {
     LevelUp();
   }
 }
+// Устанавливает количество опыта игрока.
 void Player::SetExperience(float xp) {
   experience = xp;
 }
+// Устанавливает уровень игрока.
 void Player::SetLevel(int lvl) {
   level = lvl;
 }

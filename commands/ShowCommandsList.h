@@ -10,7 +10,9 @@ class ShowCommandsList : public ICommand {
   DefaultLogic *logic;
 
  public:
+  // Конструктор, принимающий указатель на объект DefaultLogic.
   ShowCommandsList(DefaultLogic *logic);
+  // Выполняет команду отображения списка доступных команд.
   void CommandExecute() override;
 };
 

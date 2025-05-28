@@ -5,6 +5,7 @@
 
 class OpenShopCommand : public ICommand {
  public:
+  // Выполняет команду открытия магазина.
   void CommandExecute() override;
 };
 

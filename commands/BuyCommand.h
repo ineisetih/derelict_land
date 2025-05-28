@@ -5,6 +5,7 @@
 
 class BuyCommand : public ICommand {
  public:
+  // Выполняет команду покупки.
   void CommandExecute() override;
 };
 

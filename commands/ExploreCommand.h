@@ -5,6 +5,7 @@
 
 class ExploreCommand : public ICommand {
  public:
+  // Выполняет команду исследования.
   void CommandExecute() override;
 };
 

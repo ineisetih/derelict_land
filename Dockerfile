@@ -1,19 +1,21 @@
-# Используем официальный образ GCC в качестве базового.
-# Для большей стабильности и воспроизводимости рекомендуется указать конкретную версию,
-# например, gcc:11 или gcc:13, вместо latest.
 FROM gcc:latest
 
-# Устанавливаем рабочую директорию внутри контейнера.
-# Все последующие команды (COPY, RUN, CMD) будут выполняться относительно этой директории.
+RUN apt-get update && apt-get install -y \
+    cmake \
+    make \
+    && rm -rf /var/lib/apt/lists/*
+
 WORKDIR /app
 
-# Копируем все файлы проекта из текущей директории хоста (где находится Dockerfile)
-# в рабочую директорию /app внутри контейнера.
-# Убедись, что Dockerfile находится в корне твоего проекта,
-# то есть /home/maksim/Projects/derelict_land/
-COPY . /app
+COPY . .
 
-RUN g++ -std=c++17 -Wall -Wextra -pedantic -o derelict_land_app \
-    main.cpp \
-    
-CMD ["./derelict_land_app"]
+RUN mkdir -p build && cd build && \
+    cmake .. && \
+    make
+
+WORKDIR /app/build
+
+CMD ["./derelict_land"]
+
+
+

@@ -5,6 +5,7 @@
 
 class ShowInventoryCommand : public ICommand {
  public:
+  // Выполняет команду отображения инвентаря игрока.
   void CommandExecute() override;
 };
 

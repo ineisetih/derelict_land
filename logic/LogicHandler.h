@@ -10,8 +10,11 @@ class LogicHandler {
 
  public:
   static LogicHandler *LogicHandlerInstance;
+  // Статический метод для получения единственного экземпляра обработчика логики.
   static LogicHandler *GetInstance();
+  // Изменяет текущую логику игры.
   void ChangeLogic(DefaultLogic *new_logic);
+  // Возвращает текущую активную логику игры.
   DefaultLogic* GetCurrentLogic() const; // Added
 };
 

@@ -9,6 +9,7 @@ class MainMenuLogic : public DefaultLogic {
   static MainMenuLogic *MainMenuLogicInstance;
 
  public:
+  // Статический метод для получения единственного экземпляра логики главного меню.
   static MainMenuLogic *GetInstance();
 };
 

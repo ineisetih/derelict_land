@@ -5,6 +5,7 @@
 
 class Exit : public ICommand {
  public:
+  // Выполняет команду выхода из игры.
   void CommandExecute() override;
 };
 

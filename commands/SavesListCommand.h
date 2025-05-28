@@ -5,6 +5,7 @@
 
 class ListSavesCommand : public ICommand {
  public:
+  // Выполняет команду отображения списка сохранений.
   void CommandExecute() override;
 };
 

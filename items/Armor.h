@@ -13,10 +13,18 @@ class Armor : public IItem {
   size_t number_of_gem_slots;
 
  public:
+  // Возвращает информацию о броне в виде строки.
   std::string GetInfo() override;
+  // Деструктор. Освобождает память, занятую камнями.
   ~Armor();
+  // Конструктор брони.
+  // name - имя брони.
+  // defence - базовое значение защиты.
+  // slots - количество слотов для камней.
   Armor(const std::string name, float defence, size_t slots);
+  // Добавляет камень в броню.
   void AddGem(Gem* gem);
+  // Удаляет камень из брони.
   void RemoveGem(Gem* gem);
 };
 

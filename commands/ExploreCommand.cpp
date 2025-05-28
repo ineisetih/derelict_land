@@ -4,6 +4,9 @@
 #include "TownLogic.h"
 #include "LogicHandler.h" 
 
+// Выполняет команду исследования.
+// Генерирует новую локацию, отображает информацию о ней.
+// Если в локации есть враги, изменяет игровую логику на боевую.
 void ExploreCommand::CommandExecute() {
   auto location = LocationGenerator::GenerateLocation();
   location->DisplayInfo();

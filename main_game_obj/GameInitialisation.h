@@ -2,6 +2,7 @@
 #define GAME_INITIALISATION_H
 
 class GameInitialisation {
+ // Статический метод для начала инициализации игры.
  public:
   static void StartGame();
 };

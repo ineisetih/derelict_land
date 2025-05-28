@@ -16,6 +16,8 @@
 
 FightLogic* FightLogic::MainFightLogicInstance = nullptr;
 
+// Возвращает единственный экземпляр класса FightLogic (Singleton).
+// При первом вызове инициализирует команды, специфичные для боя.
 FightLogic* FightLogic::GetInstance() {
   if (!MainFightLogicInstance) {
     MainFightLogicInstance = new FightLogic();
@@ -27,10 +29,12 @@ FightLogic* FightLogic::GetInstance() {
   return MainFightLogicInstance;
 }
 
+// Добавляет врага в текущий бой.
 void FightLogic::AddEnemy(std::shared_ptr<Enemy> enemy) {
   enemies.push_back(enemy);
 }
 
+// Удаляет врага из текущего боя.
 void FightLogic::RemoveEnemy(std::shared_ptr<Enemy> enemy) {
   for (size_t i = 0; i < enemies.size(); i++) {
     if (enemies[i] == enemy) {
@@ -39,14 +43,17 @@ void FightLogic::RemoveEnemy(std::shared_ptr<Enemy> enemy) {
   }
 }
 
+// Возвращает вектор с врагами, участвующими в бою.
 std::vector<std::shared_ptr<Enemy>>FightLogic::GetEnemies() {
   return enemies;
 }
 
+// Создает врагов для боя (в данном случае, одного Гоблина).
 void FightLogic::CreateEnemies() {
   FightLogic::GetInstance()->AddEnemy(EnemyFactory::CreateEnemy(Goblin));
 }
 
+// Начинает и управляет процессом боя между игроком и врагами.
 void FightLogic::StartFight() {
   try {
     std::shared_ptr<Player> player = Player::GetInstance();
