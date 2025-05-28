@@ -3,8 +3,7 @@
 
 #include <string>
 #include <iostream>
-#include "InventoryInterfece.h" 
-
+#include "InventoryInterfece.h"
 
 class Character {
  protected:
@@ -22,6 +21,7 @@ class Character {
   virtual void Take_Damage(float damage);
   virtual void Heal(float heal);
 
+  IInventory* GetInventory();
   std::string GetName();
   float GetHealth();
   float GetDamage();

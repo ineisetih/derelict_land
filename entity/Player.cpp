@@ -6,8 +6,10 @@
 #define DAMAGE_UP_PER_LVL 5
 #define HEALTH_UP_PER_LVL 20
 #define EXP_DOWN_PER_LVL 100
+#define BASE_HP 100.0f
+#define BASE_DMG 10.0f
 
-Player* Player::instance = nullptr;
+std::shared_ptr<Player> Player::instance = nullptr; 
 
 Player::Player(std::string name, float health, float damage)
     : Character(name, health, damage), experience(0), level(1) {
@@ -15,17 +17,16 @@ Player::Player(std::string name, float health, float damage)
 }
 
 Player::~Player() {
-  if (instance) {
-    SaveManager::SaveGame(instance);
-    delete inventory;
-    instance = nullptr;
+  delete inventory; 
+}
+std::shared_ptr<Player> Player::GetInstance(){ 
+  if (!instance) {
   }
+  return instance;
 }
 
-Player* Player::CreatePlayer(std::string name, float health, float damage) {
-  if (!instance) {
-    instance = new Player(name, health, damage);
-  }
+std::shared_ptr<Player> Player::CreatePlayer(std::string name, float health, float damage) { 
+  instance = std::shared_ptr<Player>(new Player(name, health, damage));
   return instance;
 }
 
@@ -62,9 +63,14 @@ void Player::EquipWeapon(std::shared_ptr<IItem> weapon) {
     if (is_equipped) {
       std::cout << "Equipped weapon: " << weapon->GetInfo() << "\n";
     }
-    auto* weaponPtr = dynamic_cast<Weapon*>(weapon.get());
-    Player::CreatePlayer()->damage += weaponPtr->GetDamage();
-      
+    if (weapon) { 
+        auto* weaponPtr = dynamic_cast<Weapon*>(weapon.get());
+        if (weaponPtr) { 
+            this->damage += weaponPtr->GetDamage(); 
+        } else {
+            std::cerr << "Warning: Attempted to equip an item that is not a Weapon or weapon data is invalid." << std::endl;
+        }
+    }
   }
 }
 
@@ -88,7 +94,13 @@ void Player::EquipArmor(std::shared_ptr<IItem> armor) {
 }
 
 std::string Player::GetInventoryInfo() const {
-  return inventory ? inventory->GetInfo() : "Inventory not initialized";
+  try {
+    std::cout << "Getting inventory info...\n";
+    return inventory ? inventory->GetInfo() : "Inventory not initialized";
+  } catch (const std::exception& e) {
+    std::cerr << "Inventory error: " << e.what() << '\n';
+  }
+  return "";
 }
 
 float Player::GetExperience() const {
@@ -111,6 +123,10 @@ void Player::SetDamage(float damage) {
   this->damage = damage;
 }
 
+void Player::SetInventory(IInventory* inventory) {
+  this->inventory = inventory;
+}
+
 void Player::AddLevel(int levels) {
   if (levels <= 0)
     return;
@@ -118,4 +134,10 @@ void Player::AddLevel(int levels) {
   for (int i = 0; i < levels; ++i) {
     LevelUp();
   }
+}
+void Player::SetExperience(float xp) {
+  experience = xp;
+}
+void Player::SetLevel(int lvl) {
+  level = lvl;
 }

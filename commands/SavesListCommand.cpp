@@ -3,7 +3,6 @@
 #include <iostream>
 #include <string>
 
-
 void ListSavesCommand::CommandExecute() {
   auto saves = SaveManager::ListSaves();
   if (saves.empty()) {

@@ -1,11 +1,12 @@
 #include "CommandHandler.h"
+#include "LogicHandler.h" 
 
 CommandHandler* CommandHandler::instance = nullptr;
 
 void CommandHandler::ExecuteCommand(std::string& command) {
-  GameMaster* gm = GameMaster::GetInstance();
-  if (gm->GetCurrentLogic()) {
-    gm->GetCurrentLogic()->DoCommand(command);
+  LogicHandler* lh = LogicHandler::GetInstance();
+  if (lh->GetCurrentLogic()) {
+    lh->GetCurrentLogic()->DoCommand(command);
   }
 }
 

@@ -1,6 +1,9 @@
 #include "ShopLogic.h"
 #include "BuyCommand.h"
+#include "ShowInventoryCommand.h"
 #include "ExploreCommand.h"
+
+#include <random>
 
 ShopLogic* ShopLogic::ShopLogicInstance = nullptr;
 
@@ -9,7 +12,7 @@ ShopLogic* ShopLogic::GetInstance() {
     ShopLogicInstance = new ShopLogic();
     ShopLogicInstance->AddCommand("buy", std::make_shared<BuyCommand>());
     ShopLogicInstance->AddCommand("explore", std::make_shared<ExploreCommand>());
-
+    ShopLogicInstance->AddCommand("showInventory", std::make_shared<ShowInventoryCommand>());
   }
   return ShopLogicInstance;
 }
@@ -24,6 +27,6 @@ void ShopLogic::OnShopOpen() {
   }
 
   for (auto item : commoditys) {
-    std::cout << item->GetInfo() << std::endl;
+    std::cout << item->GetInfo() << " cost: " << std::rand() % 7 + 1 << std::endl;
   }
 }

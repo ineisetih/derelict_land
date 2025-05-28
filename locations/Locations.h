@@ -16,17 +16,17 @@ class Locations {
  private:
   LocationType type;
   WeatherType weather;
-  std::vector<std::string> properties;  // Дополнительные свойства
+  std::vector<std::string> properties; 
 
  public:
   Locations(LocationType type, WeatherType weater);
-  void AddProperty(const std::string& property);  // Добавление свойств
+  void AddProperty(const std::string& property);  
   LocationType GetType();
   WeatherType GetWeather();
   std::vector<std::string> GetProperties();
-  bool HasProperty(const std::string& property);  // Проверка наличия свойства
+  bool HasProperty(const std::string& property);  
 
-  void DisplayInfo();  // Вывод локации
+  void DisplayInfo();  
 };
 
 #endif  // LOCATIONS_H

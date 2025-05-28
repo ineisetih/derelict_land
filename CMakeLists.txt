@@ -14,6 +14,8 @@ endif()
 # --- Source and Include Directories ---
 set(SOURCE_DIR ${CMAKE_SOURCE_DIR})
 set(INCLUDE_DIR ${CMAKE_SOURCE_DIR}/include)
+set(SQLITE_DIR ${SOURCE_DIR}/sqlite)
+set(JSON_DIR ${SOURCE_DIR}/nlohmann)
 set(INVENTORY_SYSTEM_DIR ${CMAKE_SOURCE_DIR}/inventory_system)
 set(COMMANDS_DIR ${CMAKE_SOURCE_DIR}/commands)
 set(MAIN_GAME_OBJ_DIR ${CMAKE_SOURCE_DIR}/main_game_obj)
@@ -34,6 +36,7 @@ file(GLOB_RECURSE SOURCE_FILES
     "${LOGIC_DIR}/*.cpp"
     "${ITEMS_DIR}/*.cpp"
     "${UTILITY_DIR}/*.cpp"
+    "${SQLITE_DIR}/sqlite3.c"
 )
 
 
@@ -51,6 +54,8 @@ target_include_directories(derelict_land PUBLIC
     ${LOGIC_DIR}
     ${ITEMS_DIR}
     ${UTILITY_DIR}
+    ${SQLITE_DIR}
+    ${JSON_DIR}
 )
 
 # --- Install ---

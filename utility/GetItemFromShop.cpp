@@ -1,5 +1,7 @@
 #include "GetItemFromShop.h"
-#include "GameMaster.h"
+#include "ShopLogic.h"
+
+#include <vector>
 
 std::shared_ptr<IItem> GetItemFromShop::Execute(int index) {
   ;

@@ -1,8 +1,8 @@
 #include "EscapeCommand.h"
-#include "GameMaster.h"
+#include "LogicHandler.h"
 #include "TownLogic.h"
 
 void EscapeCommand::CommandExecute() {
   std::cout << "You escaped";
-  GameMaster::GetInstance()->SetCurrentLogic(TownLogic::GetInstance());
+  LogicHandler::GetInstance()->ChangeLogic(TownLogic::GetInstance()); 
 }

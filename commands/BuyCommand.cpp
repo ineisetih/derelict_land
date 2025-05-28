@@ -1,5 +1,4 @@
 #include "BuyCommand.h"
-#include "GameMaster.h"
 #include "GetItemFromShop.h"
 #include "PlayerGetItem.h"
 

@@ -1,7 +1,6 @@
 #ifndef COMMAND_HANDLER_H
 #define COMMAND_HANDLER_H
 
-#include "GameMaster.h"
 #include <string>
 
 class CommandHandler {

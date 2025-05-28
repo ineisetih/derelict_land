@@ -1,9 +1,8 @@
 #include "ShowInventoryCommand.h"
-#include "GameMaster.h"
 #include "Player.h"
 
 void ShowInventoryCommand::CommandExecute() {
-  Player* player = GameMaster::GetInstance()->GetPlayer();
+  std::shared_ptr<Player> player = Player::GetInstance();
   if (player) {
     std::cout << player->GetInventoryInfo() << '\n';
   } else {

@@ -1,14 +1,15 @@
 #include "FightLogic.h"
 #include "ExitCommand.h"
 #include "Player.h"
-#include "GameMaster.h"
-#include "ShowCommandsList.h"
+#include "LogicHandler.h"
 #include "ShowPlayerStats.h"
 #include "OnPlayerDeath.h"
 #include "GiveLoot.h"
 #include "EnemyFactory.h"
 #include "FightCommand.h"
 #include "EscapeCommand.h"
+#include "ShowInventoryCommand.h"
+#include "TownLogic.h"
 
 #include <chrono>
 #include <thread>
@@ -20,6 +21,7 @@ FightLogic* FightLogic::GetInstance() {
     MainFightLogicInstance = new FightLogic();
     MainFightLogicInstance->AddCommand("fight", std::make_shared<FightCommand>());
     MainFightLogicInstance->AddCommand("escape", std::make_shared<EscapeCommand>());
+    MainFightLogicInstance->AddCommand("inventory", std::make_shared<ShowInventoryCommand>());
 
   }
   return MainFightLogicInstance;
@@ -47,7 +49,7 @@ void FightLogic::CreateEnemies() {
 
 void FightLogic::StartFight() {
   try {
-    Player* player = GameMaster::GetInstance()->GetPlayer();
+    std::shared_ptr<Player> player = Player::GetInstance();
     if (!player)
       throw std::runtime_error("Player not initialized");
     if (enemies.empty())
@@ -77,9 +79,9 @@ void FightLogic::StartFight() {
     }
     std::cout << "Take your reward!\n";
     GiveLoot::Execute(loot);
-    GameMaster::GetInstance()->SetCurrentLogic(TownLogic::GetInstance());
+    LogicHandler::GetInstance()->ChangeLogic(TownLogic::GetInstance()); 
   } catch (const std::exception& e) {
     std::cerr << "Combat error: " << e.what() << '\n';
-    GameMaster::GetInstance()->SetCurrentLogic(TownLogic::GetInstance());
+    LogicHandler::GetInstance()->ChangeLogic(TownLogic::GetInstance()); 
   }
 }

@@ -14,14 +14,18 @@ struct PlayerSave {
   float damage;
   float experience;
   int level;
+  std::vector<std::string> equippedItems;
+  std::vector<std::string> backpackItems;
 };
 
 class SaveManager {
  public:
-  static void SaveGame(Player* player, const std::string& filename = SAVE_PATH);
-  static PlayerSave LoadGame(const std::string& playerName, const std::string& filename = SAVE_PATH);
+  static void SaveGame(std::shared_ptr<Player> player);
+  static std::shared_ptr<Player> LoadGame(const std::string& playerName, const std::string& filename = SAVE_PATH);
   static std::vector<std::string> ListSaves(const std::string& filename = SAVE_PATH);
- // static bool DeleteSave(const std::string& playerName, const std::string& filename = "saves.txt");
+  static bool DeleteSave(const std::string& playerName, const std::string& filename = SAVE_PATH);
+  static std::shared_ptr<IItem> ParseItem(const std::string& itemStr);
+  static bool IsPlayerExist(const std::string& playerName, const std::string& filename = SAVE_PATH);
 };
 
 #endif

@@ -1,8 +1,8 @@
 #include "OpenShopCommand.h"
 #include "ShopLogic.h"
-#include "GameMaster.h"
+#include "LogicHandler.h" 
 
 void OpenShopCommand::CommandExecute() {
-  GameMaster::GetInstance()->SetCurrentLogic(ShopLogic::GetInstance());
+  LogicHandler::GetInstance()->ChangeLogic(ShopLogic::GetInstance()); 
   ShopLogic::GetInstance()->OnShopOpen();
 }

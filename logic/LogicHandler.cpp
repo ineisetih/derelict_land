@@ -1,5 +1,4 @@
 #include "LogicHandler.h"
-#include "GameMaster.h"
 
 LogicHandler* LogicHandler::LogicHandlerInstance = nullptr;
 
@@ -10,6 +9,9 @@ LogicHandler* LogicHandler::GetInstance() {
   return LogicHandlerInstance;
 }
 void LogicHandler::ChangeLogic(DefaultLogic* new_logic) {
-  GameMaster* gm = GameMaster::GetInstance();
-  gm->SetCurrentLogic(new_logic);
+  current_logic = new_logic;
+}
+
+DefaultLogic* LogicHandler::GetCurrentLogic() const {
+    return current_logic;
 }

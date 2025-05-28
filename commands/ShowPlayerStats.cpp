@@ -1,10 +1,9 @@
 #include "ShowPlayerStats.h"
-#include "GameMaster.h"
 #include "Player.h"
 
 void ShowPlayerStats::CommandExecute() {
-  if (GameMaster::GetInstance()->GetPlayer() != nullptr) {
-    auto player = GameMaster::GetInstance()->GetPlayer();
+  std::shared_ptr<Player> player = Player::GetInstance(); 
+  if (player) {
     std::cout << "Hp: " << player->GetHealth() << std::endl;
     std::cout << "Damage: " << player->GetDamage() << std::endl;
     std::cout << "LVL: " << player->GetLevel() << std::endl;

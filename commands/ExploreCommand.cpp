@@ -1,7 +1,8 @@
 #include "LocationsGenerator.h"
 #include "ExploreCommand.h"
 #include "FightLogic.h"
-#include "GameMaster.h"
+#include "TownLogic.h"
+#include "LogicHandler.h" 
 
 void ExploreCommand::CommandExecute() {
   auto location = LocationGenerator::GenerateLocation();
